@@ -1,7 +1,16 @@
 <template>
-  <div class="card-item person-item">
+  <div 
+    class="card-item person-item" 
+    v-bind:class="{'is-selected':person.selected, 'is-disabled':person.disabled, 'is-matched':person.matched } "
+    @click="$emit('select-person', person.id)"
+  >
+    
+    <input type="checkbox" v-model="person.selected" :disabled="person.disabled == 1 ? true : false">
     <img :src="person.picture.thumbnail">
-    <h4>{{ person.name.first }} {{ person.name.last }} </h4>
+    <div v-if="person.selected || person.matched">
+      <h4>{{ person.name.first }} {{ person.name.last }} </h4>
+    </div>
+
     
   </div>
 </template>
@@ -19,6 +28,7 @@ export default {
 <style scoped>
 
   .card-item{
+    cursor: pointer;
     font-size: 10px;
     width: 100px;
     height: 100px;

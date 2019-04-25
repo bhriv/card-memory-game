@@ -10,7 +10,7 @@
 
     <section v-else>
       <div v-if="people_api_loading">Loading data...</div>
-      <People v-bind:deckOfPeople="deckOfPeople" /> 
+      <People v-bind:deckOfPeople="deckOfPeople" v-on:select-person="selectPerson" /> 
     </section>
 
     
@@ -68,6 +68,11 @@ export default {
     gameShuffleCards: function () {
       // Cards should be shuffled at the game start to avoid cheating
       console.info('Game Shuggle Cards');
+    },
+    selectPerson: function (id) {
+      // Cards should be shuffled at the game start to avoid cheating
+      console.info('Person selected with ID:' +id);
+      this.deckOfPeople[id].selected = true
     },
     
   },
