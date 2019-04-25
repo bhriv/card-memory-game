@@ -1,7 +1,7 @@
 <template>
   <div class="card-item person-item">
     <img :src="person.picture.thumbnail">
-    <span>{{ person.name.first }} {{ person.name.last }} </span>
+    <h4>{{ person.name.first }} {{ person.name.last }} </h4>
     
   </div>
 </template>
@@ -29,10 +29,11 @@ export default {
     padding: 1em;
     align-items: center;
   }
+  h4{
+    text-transform: capitalize;
+  }
   img{
     margin: 5px;
-    
-    
     border-radius: 50%;
   }
 </style>

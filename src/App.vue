@@ -9,7 +9,7 @@
     </section>
 
     <section v-else>
-      <div v-if="people_api_loading">Loading...</div>
+      <div v-if="people_api_loading">Loading data...</div>
       <People v-bind:deckOfPeople="deckOfPeople" /> 
     </section>
 
@@ -45,7 +45,7 @@ export default {
       deckOfPeople: null,
       people_api_error: false,
       people_api_error_msg: null,
-      loading: true
+      people_api_loading: true
     }
   },
   methods: {
@@ -98,12 +98,13 @@ export default {
         this.people_api_error = true
         this.people_api_error_msg = error
       })
-      .finally(() => this.people_api_loading)
+      .finally(() => setTimeout(this.people_api_loading = false, 1000) )
   },
   created() {
     console.log('App created now');
   }
 }
+
 
 
 // FUNCTIONS OUTSIDE OF APP - TO PERSIST DATA MODEL
