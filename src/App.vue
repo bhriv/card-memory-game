@@ -23,6 +23,7 @@ export default {
   },
   data() {
     return {
+      deckOfCards: initCardDeck()
     }
   },
   methods: {
@@ -56,6 +57,43 @@ export default {
   created() {
     console.log('App created now');
   }
+}
+
+
+// FUNCTIONS OUTSIDE OF APP - TO PERSIST DATA MODEL
+
+// Used to reset the data to resart the game
+function initCardDeck() {
+  return [
+    {
+      id: 0,
+      title: "Ace",
+      selected: false,
+      disabled: 0,
+      matched: false
+    },
+    {
+      id: 1,
+      title: "King",
+      selected: false,
+      disabled: 0,
+      matched: false
+    },
+    {
+      id: 2,
+      title: "Queen",
+      selected: false,
+      disabled: 0,
+      matched: false
+    },
+    {
+      id: 3,
+      title: "Jack",
+      selected: false,
+      disabled: 0,
+      matched: false
+    }
+  ] 
 }
 </script>
 
