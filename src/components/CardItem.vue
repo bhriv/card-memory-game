@@ -1,6 +1,6 @@
 <template>
   <div class="card-item">
-    {{card.title}}
+    {{card}}
   </div>
 </template>
 
@@ -16,6 +16,7 @@ export default {
 
 <style scoped>
   .card-item{
+    font-size: 10px;
     width: 100px;
     height: 100px;
     float: left;
