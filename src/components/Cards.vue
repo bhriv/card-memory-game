@@ -15,8 +15,9 @@ import CardItem from './CardItem.vue';
 export default {
   name: "Cards",
   components: {
+    CardItem
   },
-  props: [],
+  props: ["deckOfCards"],
   methods: {}
 }
 </script>
