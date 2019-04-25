@@ -50,6 +50,11 @@ export default {
     
   },
   watch: {
+    deckOfCards: function(newValue, oldValue) {
+      console.log('deckOfCards: Watch fired')
+      console.log('PREV deckOfCards: ',oldValue)
+      console.log('UPDATED deckOfCards: ',newValue)
+    }
   },
   mounted () {
     console.log('App mounted now');
