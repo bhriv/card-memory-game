@@ -3,6 +3,7 @@
     <Header />
     <router-view/>
     <Cards v-bind:deckOfCards="deckOfCards" /> 
+    <People v-bind:deckOfPeople="deckOfPeople" /> 
     <Footer />
   </div>
 </template>
@@ -13,6 +14,7 @@
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Cards from './components/Cards';
+import People from './components/People';
 
 // Vendor
 import axios from 'axios';
@@ -23,7 +25,8 @@ export default {
   components: {
     Header,
     Footer,
-    Cards
+    Cards,
+    People
   },
   data() {
     return {
@@ -66,11 +69,15 @@ export default {
     console.log(this.deckOfCards);
 
     axios
-      .get('https://randomuser.me/api/?inc=gender,name,nat,picture&results=4')
+      .get('https://randomuser.me/api/?inc=name,picture&results=4&nat=us')
       // .get('https://evtask.t12y.net/assets')
       .then(response => {
         console.log(response.data.results)
-        this.deckOfPeople = response.data.results
+        let randomPeople = response.data.results;
+        for (var i = 0; i < randomPeople.length; i++) {
+          randomPeople[i].id = i;
+        }
+        this.deckOfPeople = randomPeople
       })
       .catch(error => {
         console.log(error)
