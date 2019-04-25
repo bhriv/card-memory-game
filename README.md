@@ -1,5 +1,34 @@
 # card-memory-game
 
+## Overview
+A game project built as part of of Front-end test for [Thought Foundry](http://thoughtfoundry.com/). The game requires a user to find matching pairs of cards. 
+
+See [Web Dev Test](https://github.com/piotrbulinski/webdev-task) for more information and see [here](http://igorminar.github.io/Memory-Game/app/index.html) for an example.
+
+### Web Test Rules
+---------------------
+-   You can use any code resource you like but please cite your sources
+-   For each game pull new assets
+-   After each game report results and display returned message on the screen
+
+
+### Deliverables
+---------------------
+- [x] Provide a README with a brief overview of your project and any other important information
+- [ ] Fully functional mobile site
+
+#### Extra Credit
+---------------------
+-   Bonus points will be awarded for
+    [ ]   engaging interactivity
+    [ ]   clever use of animations / transforms / sounds / etc...
+    [ ]   including a build script
+    [ ]   responsive design / enhanced tablet functionality
+    [ ]  binding UI elements to a data model or external dynamic feed
+    [ ]  minimal use of images
+    [ ]  creativity
+
+
 ## Project setup
 ```
 npm install
