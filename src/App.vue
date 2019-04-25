@@ -65,10 +65,10 @@ export default {
     console.log(this.deckOfCards);
 
     axios
-      .get('https://randomuser.me/api/?inc=gender,name,nat')
+      .get('https://randomuser.me/api/?inc=gender,name,nat,picture&results=4')
       // .get('https://evtask.t12y.net/assets')
       .then(response => {
-        console.log(response)
+        console.log(response.data.results)
       })
       .catch(error => {
         console.log(error)
