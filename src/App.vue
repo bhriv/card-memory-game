@@ -53,6 +53,7 @@ export default {
   },
   mounted () {
     console.log('App mounted now');
+    console.log(this.deckOfCards);
   },
   created() {
     console.log('App created now');
