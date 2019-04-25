@@ -1,9 +1,9 @@
 <template>
   <div class="hello">
     <h1>Main Card Page</h1>
-    <p>
-      put card deck under here
-    </p>
+    <div v-bind:key="card.id" v-for="card in deckOfCards">
+      <CardItem v-bind:card="card" />
+    </div>
   </div>
 </template>
 
