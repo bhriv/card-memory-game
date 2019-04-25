@@ -2,8 +2,19 @@
   <div id="app">
     <Header />
     <router-view/>
-    <Cards v-bind:deckOfCards="deckOfCards" /> 
-    <People v-bind:deckOfPeople="deckOfPeople" /> 
+    <section v-if="people_api_error">
+      <p>We're not able to retrieve random Person data from the API at this moment. The following reason was given: <span class="error">{{ people_api_error_msg }}</span></p>
+      <p>Fallback data will be used for the game.</p>
+      <Cards v-bind:deckOfCards="deckOfCards" /> 
+    </section>
+
+    <section v-else>
+      <div v-if="people_api_loading">Loading...</div>
+      <People v-bind:deckOfPeople="deckOfPeople" /> 
+    </section>
+
+    
+    
     <Footer />
   </div>
 </template>
@@ -31,7 +42,10 @@ export default {
   data() {
     return {
       deckOfCards: initCardDeck(),
-      deckOfPeople: null
+      deckOfPeople: null,
+      people_api_error: false,
+      people_api_error_msg: null,
+      loading: true
     }
   },
   methods: {
@@ -81,8 +95,10 @@ export default {
       })
       .catch(error => {
         console.log(error)
+        this.people_api_error = true
+        this.people_api_error_msg = error
       })
-      // .finally(() => ...do something ....)
+      .finally(() => this.people_api_loading)
   },
   created() {
     console.log('App created now');
