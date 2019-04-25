@@ -90,6 +90,9 @@ export default {
         let randomPeople = response.data.results;
         for (var i = 0; i < randomPeople.length; i++) {
           randomPeople[i].id = i;
+          randomPeople[i].selected = false
+          randomPeople[i].disabled = 0
+          randomPeople[i].matched = false
         }
         this.deckOfPeople = randomPeople
       })
