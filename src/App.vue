@@ -27,7 +27,8 @@ export default {
   },
   data() {
     return {
-      deckOfCards: initCardDeck()
+      deckOfCards: initCardDeck(),
+      deckOfPeople: null
     }
   },
   methods: {
@@ -69,6 +70,7 @@ export default {
       // .get('https://evtask.t12y.net/assets')
       .then(response => {
         console.log(response.data.results)
+        this.deckOfPeople = response.data.results
       })
       .catch(error => {
         console.log(error)
@@ -85,6 +87,8 @@ export default {
 
 // Used to reset the data to resart the game
 function initCardDeck() {
+  console.log('initCardDeck')
+
   return [
     {
       id: 0,
