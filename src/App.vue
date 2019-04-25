@@ -7,13 +7,31 @@
 </template>
 
 <script>
+
+// Components
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+
+// App 
 export default {
   name:"app",
   components: {
     Header,
     Footer
+  },
+  data() {
+    return {
+    }
+  },
+  methods: {
+  },
+  watch: {
+  },
+  mounted () {
+    console.log('App mounted now');
+  },
+  created() {
+    console.log('App created now');
   }
 }
 </script>
