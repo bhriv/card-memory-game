@@ -11,19 +11,42 @@
 // Components
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import Cards from './components/Cards';
 
 // App 
 export default {
   name:"app",
   components: {
     Header,
-    Footer
+    Footer,
+    Cards
   },
   data() {
     return {
     }
   },
   methods: {
+    gameStarted: function () {
+      // New game stared. User can read instructions prior to starting timer
+      console.info('Game started');
+    },
+    gameEnded: function () {
+      // fire at the end of the game. Use to trigger posting the results
+      console.info('Game ended');
+    },
+    gameTimeout: function () {
+      // @TODO - possibly have a setting for max time each game
+      console.info('Game Timeout - timer ended');
+    },
+    gameFail: function () {
+      // @TODO - possibly have a setting for max wrong answers
+      console.info('Game fail - too many wrong answers');
+    },
+    gameShuffleCards: function () {
+      // Cards should be shuffled at the game start to avoid cheating
+      console.info('Game Shuggle Cards');
+    },
+    
   },
   watch: {
   },
