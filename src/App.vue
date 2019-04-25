@@ -14,6 +14,9 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Cards from './components/Cards';
 
+// Vendor
+import axios from 'axios';
+
 // App 
 export default {
   name:"app",
@@ -60,6 +63,17 @@ export default {
   mounted () {
     console.log('App mounted now');
     console.log(this.deckOfCards);
+
+    axios
+      .get('https://randomuser.me/api/?inc=gender,name,nat')
+      // .get('https://evtask.t12y.net/assets')
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      // .finally(() => ...do something ....)
   },
   created() {
     console.log('App created now');
