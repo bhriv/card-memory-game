@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <router-view/>
+    <Cards v-bind:deckOfCards="deckOfCards" /> 
     <Footer />
   </div>
 </template>

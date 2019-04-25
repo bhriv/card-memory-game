@@ -1,13 +1,13 @@
 <template>
   <div class="card-item">
-    Single Card Item here
+    {{card.title}}
   </div>
 </template>
 
 <script>
 export default {
   name: "CardItem",
-  props: [],
+  props: ["card"],
   methods: {
   }
 }
@@ -16,8 +16,10 @@ export default {
 
 <style scoped>
   .card-item{
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 2px;
     background-color: lightgray;
     text-align: center;
     padding: 1em;

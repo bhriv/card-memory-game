@@ -13,7 +13,11 @@ export default {
 
 <style scoped>
   footer {
-    flex-shrink: 0;
+    position: absolute;
+    bottom: 0;
+    padding: 1em;
+    text-aligh: center;
+    width: 100%;
     font-size: 12px
   }
 </style>

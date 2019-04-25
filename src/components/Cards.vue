@@ -1,6 +1,5 @@
 <template>
-  <div class="hello">
-    <h1>Main Card Page</h1>
+  <div>
     <div v-bind:key="card.id" v-for="card in deckOfCards">
       <CardItem v-bind:card="card" />
     </div>
