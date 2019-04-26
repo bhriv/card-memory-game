@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header />
+
     <router-view/>
+    
     <section v-if="people_api_error">
       <p>We're not able to retrieve random Person data from the API at this moment. The following reason was given: <span class="error">{{ people_api_error_msg }}</span></p>
       <p>Fallback data will be used for the game.</p>
@@ -13,8 +15,6 @@
       <People v-bind:deckOfPeople="deckOfPeople" v-on:select-person="selectPerson" /> 
     </section>
 
-    
-    
     <Footer />
   </div>
 </template>
@@ -136,7 +136,7 @@ export default {
       console.log('UPDATED deckOfCards: ',newValue)
     },
     selection_counter: function () {
-      this.selection_counter > 1 ? this.checkSelection() : console.log('choose more');
+      if(this.selection_counter >1) this.checkSelection()
     }
   },
   mounted () {

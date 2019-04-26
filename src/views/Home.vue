@@ -1,7 +1,7 @@
 <template>
   <div class="home content">
     <h1>Card Deck Table</h1>
-    <Cards />
+    <button @click="$emit('reset-people')">Start Over (people)</button>
   </div>
 </template>
 
