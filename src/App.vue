@@ -45,7 +45,8 @@ export default {
       deckOfPeople: null,
       people_api_error: false,
       people_api_error_msg: null,
-      people_api_loading: true
+      people_api_loading: true,
+      selection_counter: 0
     }
   },
   methods: {
@@ -73,6 +74,7 @@ export default {
       // Cards should be shuffled at the game start to avoid cheating
       console.info('Person selected with ID:' +id);
       this.deckOfPeople[id].selected = true
+      this.selection_counter = this.selection_counter+1;
     },
     
   },
