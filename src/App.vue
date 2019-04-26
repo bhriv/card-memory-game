@@ -3,7 +3,7 @@
     <Header />
 
     <router-view/>
-    
+
     <section v-if="people_api_error">
       <p>We're not able to retrieve random Person data from the API at this moment. The following reason was given: <span class="error">{{ people_api_error_msg }}</span></p>
       <p>Fallback data will be used for the game.</p>
@@ -12,7 +12,11 @@
 
     <section v-else>
       <div v-if="people_api_loading">Loading data...</div>
-      <People v-bind:deckOfPeople="deckOfPeople" v-on:select-person="selectPerson" /> 
+      <People 
+        v-bind:deckOfPeople="deckOfPeople" 
+        v-on:select-person="selectPerson" 
+        v-on:reset-people="createDeckOfPeople" 
+      /> 
     </section>
 
     <Footer />
@@ -47,7 +51,8 @@ export default {
       people_api_error: false,
       people_api_error_msg: null,
       people_api_loading: true,
-      selection_counter: 0
+      selection_counter: 0,
+      pairs_to_match: 3
     }
   },
   methods: {
@@ -67,10 +72,6 @@ export default {
       // @TODO - possibly have a setting for max wrong answers
       console.info('Game fail - too many wrong answers');
     },
-    gameShuffleCards: function () {
-      // Cards should be shuffled at the game start to avoid cheating
-      console.info('Game Shuggle Cards');
-    },
     selectPerson: function (id) {
       // Cards should be shuffled at the game start to avoid cheating
       console.info('Person selected with ID:' +id);
@@ -86,15 +87,15 @@ export default {
         let matchedPairs = _.where(this.deckOfPeople,{title: choices[0].title})
 
         for (var i = 0; i < matchedPairs.length; i++) {
-          let targetCard = _.findWhere(this.deckOfPeople,{id: matchedPairs[i].id})
+          let targetCard = _.findWhere(this.deckOfPeople,{title: matchedPairs[i].title})
           console.log('targetCard',targetCard)
           targetCard.matched = true
           targetCard.disabled = 1
         }
-        setTimeout(this.resetSelection, 1000)
+        setTimeout(this.resetSelection, 3000)
       }else{
         alert(':( Try again')
-        setTimeout(this.resetSelection, 1000)
+        setTimeout(this.resetSelection, 3000)
       }
       this.selection_counter = 0
     },
@@ -108,18 +109,36 @@ export default {
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
       axios
-        .get('https://randomuser.me/api/?inc=name,picture&results=4&nat=us')
+        .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match+'&nat=us')
         // .get('https://evtask.t12y.net/assets')
         .then(response => {
-          console.log(response.data.results)
-          let randomPeople = response.data.results;
-          for (var i = 0; i < randomPeople.length; i++) {
-            randomPeople[i].id = i;
-            randomPeople[i].title = randomPeople[i].name.first+'-'+randomPeople[i].name.last
-            randomPeople[i].selected = false
-            randomPeople[i].matched = false
+          // console.log(response.data.results)
+          this.deckOfPeople = response.data.results;
+          // Create Double Stack Deck
+          let peopleData = this.deckOfPeople.concat(this.deckOfPeople);
+          
+          for (var i = 0; i < peopleData.length; i++) {
+            peopleData[i] = {
+              title: peopleData[i].name.first+'-'+peopleData[i].name.last,
+              thumbnail: peopleData[i].picture.thumbnail,
+            }
           }
-          this.deckOfPeople = randomPeople
+          
+          // Separate Memory Game Data from API Data for future expansion
+          let memoryData = [];
+          for (var j = 0; j < peopleData.length; j++) {
+           memoryData[j] = {
+              id: j,
+              title: peopleData[j].title, 
+              thumbnail: peopleData[j].thumbnail, 
+              selected: false,
+              matched: false,
+              disabled: false
+            }
+          }
+          console.log('deck of People with memoryData',memoryData)
+          // Shuffle Deck
+          this.deckOfPeople = _.shuffle(memoryData);
         })
         .catch(error => {
           console.log(error)
