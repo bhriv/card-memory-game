@@ -76,13 +76,19 @@ export default {
       this.deckOfPeople[id].selected = true
       this.selection_counter = this.selection_counter+1;
     },
-    
+    checkSelection: function () {
+      alert('checkSelection')
+      this.selection_counter = 0
+    }
   },
   watch: {
     deckOfCards: function(newValue, oldValue) {
       console.log('deckOfCards: Watch fired')
       console.log('PREV deckOfCards: ',oldValue)
       console.log('UPDATED deckOfCards: ',newValue)
+    },
+    selection_counter: function () {
+      this.selection_counter > 1 ? this.checkSelection() : console.log('choose more');
     }
   },
   mounted () {
