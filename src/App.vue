@@ -79,6 +79,29 @@ export default {
     checkSelection: function () {
       alert('checkSelection')
       this.selection_counter = 0
+    },
+    createDeckOfPeople: function () {
+      console.log('createDeckOfPeople')
+      axios
+        .get('https://randomuser.me/api/?inc=name,picture&results=4&nat=us')
+        // .get('https://evtask.t12y.net/assets')
+        .then(response => {
+          console.log(response.data.results)
+          let randomPeople = response.data.results;
+          for (var i = 0; i < randomPeople.length; i++) {
+            randomPeople[i].id = i;
+            randomPeople[i].selected = false
+            randomPeople[i].disabled = 0
+            randomPeople[i].matched = false
+          }
+          this.deckOfPeople = randomPeople
+        })
+        .catch(error => {
+          console.log(error)
+          this.people_api_error = true
+          this.people_api_error_msg = error
+        })
+        .finally(() => setTimeout(this.people_api_loading = false, 1000) )
     }
   },
   watch: {
@@ -94,27 +117,7 @@ export default {
   mounted () {
     console.log('App mounted now');
     console.log(this.deckOfCards);
-
-    axios
-      .get('https://randomuser.me/api/?inc=name,picture&results=4&nat=us')
-      // .get('https://evtask.t12y.net/assets')
-      .then(response => {
-        console.log(response.data.results)
-        let randomPeople = response.data.results;
-        for (var i = 0; i < randomPeople.length; i++) {
-          randomPeople[i].id = i;
-          randomPeople[i].selected = false
-          randomPeople[i].disabled = 0
-          randomPeople[i].matched = false
-        }
-        this.deckOfPeople = randomPeople
-      })
-      .catch(error => {
-        console.log(error)
-        this.people_api_error = true
-        this.people_api_error_msg = error
-      })
-      .finally(() => setTimeout(this.people_api_loading = false, 1000) )
+    this.createDeckOfPeople()
   },
   created() {
     console.log('App created now');
@@ -124,7 +127,6 @@ export default {
 
 
 // FUNCTIONS OUTSIDE OF APP - TO PERSIST DATA MODEL
-
 // Used to reset the data to resart the game
 function initCardDeck() {
   console.log('initCardDeck')
