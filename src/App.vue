@@ -29,6 +29,7 @@ import People from './components/People';
 
 // Vendor
 import axios from 'axios';
+import {_} from 'vue-underscore';
 
 // App 
 export default {
@@ -86,7 +87,7 @@ export default {
 
         for (var i = 0; i < matchedPairs.length; i++) {
           let targetCard = _.findWhere(this.deckOfPeople,{id: matchedPairs[i].id})
-          // console.log('targetCard',targetCard)
+          console.log('targetCard',targetCard)
           targetCard.matched = true
           targetCard.disabled = 1
         }
