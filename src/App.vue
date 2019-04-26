@@ -77,8 +77,32 @@ export default {
       this.selection_counter = this.selection_counter+1;
     },
     checkSelection: function () {
-      alert('checkSelection')
+      console.log('fired checkSelectedCards');
+      let choices = _.where(this.deckOfPeople,{selected: true})
+      console.log('choices: ',choices);
+      if (choices[0].title === choices[1].title) {
+        alert('Matched Pair Found!!')
+        let matchedPairs = _.where(this.deckOfPeople,{title: choices[0].title})
+
+        for (var i = 0; i < matchedPairs.length; i++) {
+          let targetCard = _.findWhere(this.deckOfPeople,{id: matchedPairs[i].id})
+          // console.log('targetCard',targetCard)
+          targetCard.matched = true
+          targetCard.disabled = 1
+        }
+        setTimeout(this.resetSelection, 1000)
+      }else{
+        alert(':( Try again')
+        setTimeout(this.resetSelection, 1000)
+      }
       this.selection_counter = 0
+    },
+    resetSelection() {
+      console.log('resetSelection')
+      for (var i = 0; i < this.deckOfPeople.length; i++) {
+        console.log(this.deckOfPeople[i]);
+        this.deckOfPeople[i].selected = false
+      }
     },
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
@@ -90,8 +114,8 @@ export default {
           let randomPeople = response.data.results;
           for (var i = 0; i < randomPeople.length; i++) {
             randomPeople[i].id = i;
+            randomPeople[i].title = randomPeople[i].name.first+'-'+randomPeople[i].name.last
             randomPeople[i].selected = false
-            randomPeople[i].disabled = 0
             randomPeople[i].matched = false
           }
           this.deckOfPeople = randomPeople
