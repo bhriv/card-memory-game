@@ -4,8 +4,6 @@
     v-bind:class="{'is-selected':person.selected, 'is-disabled':person.disabled, 'is-matched':person.matched } "
     @click="$emit('select-person', person.id)"
   >
-    
-    <input type="checkbox" v-model="person.selected" :disabled="person.disabled == 1 ? true : false">
     <img :src="person.picture.thumbnail">
     <div v-if="person.selected || person.matched">
       <h4>{{ person.name.first }} {{ person.name.last }} </h4>
