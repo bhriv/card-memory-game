@@ -51,7 +51,7 @@ export default {
       people_api_error: false,
       people_api_error_msg: null,
       people_api_loading: true,
-      pairs_to_match: 4
+      pairs_to_match: 2
     }
   },
   methods: {
@@ -62,6 +62,11 @@ export default {
     gameEnded: function () {
       // fire at the end of the game. Use to trigger posting the results
       console.info('Game ended');
+      this.$dialog.confirm({
+          title: 'You Did It!',
+          message: 'Play Again?',
+          onConfirm: () => this.createDeckOfPeople()
+      })
     },
     gameTimeout: function () {
       // @TODO - possibly have a setting for max time each game
@@ -91,7 +96,12 @@ export default {
           choices[1].selected = false
         }, 2000)
       }
-      _.find(this.deckOfPeople,{matched: false}) ? console.log('keep going') : console.log('game over')
+      if (_.find(this.deckOfPeople,{matched: false}) ) {
+        console.log('keep going') 
+      }else{
+        console.log('Game Over !****')
+        this.gameEnded()
+      }
     },
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
