@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card-item person-item" 
+    class="card-item" 
     v-bind:class="{'is-selected':person.selected, 'is-disabled':person.disabled, 'is-matched':person.matched }"
     @click="pickCard" 
   >
@@ -34,10 +34,6 @@ export default {
 
   .card-item{
     font-size: 10px;
-    width: 100px;
-    float: left;
-    height: 100px;
-    display: block;
     margin: 2px;
     background-color: lightblue;
     text-align: center;

@@ -11,8 +11,8 @@
     <section v-else>
       <div v-if="people_api_loading">Loading data...</div>
       <People 
-        v-bind:deckOfPeople="deckOfPeople" 
         v-on:reset-people="createDeckOfPeople" 
+        v-bind:deckOfPeople="deckOfPeople" 
         @pick-card="pickCard"
       /> 
     </section>
@@ -51,7 +51,7 @@ export default {
       people_api_error: false,
       people_api_error_msg: null,
       people_api_loading: true,
-      pairs_to_match: 3
+      pairs_to_match: 4
     }
   },
   methods: {
