@@ -1,14 +1,19 @@
 import Vue from 'vue'
-import underscore from 'vue-underscore'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// Vendor Library 
+import underscore from 'vue-underscore'
+
 // Vendor UI Framework
 import Buefy from 'buefy'
+// Don't need to import here, as setting overrides in App.vue
 // import 'buefy/dist/buefy.css'
-
-Vue.use(Buefy)
+Vue.use(Buefy, {
+    defaultIconPack: 'mdi',
+    // defaultContainerElement: '#content',
+})
 
 Vue.config.productionTip = false
 
