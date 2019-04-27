@@ -71,9 +71,8 @@ export default {
       // @TODO - possibly have a setting for max wrong answers
       console.info('Game fail - too many wrong answers');
     },
-    pickCard: function (id){
+    pickCard: function (){
       console.log('App.vue pickCard fired')
-      // console.log('Person ID: '+id)
       let choices = _.where(this.deckOfPeople,{selected: true})
       if(choices.length == 2) this.checkSelections(choices)
     },
@@ -200,6 +199,7 @@ function initCardDeck() {
 }
 </script>
 
+<style type="text/css" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css"></style>
 <style>
 
   html, body {
@@ -209,6 +209,7 @@ function initCardDeck() {
     display: flex;
     flex-direction: column;
   }
+
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -221,4 +222,39 @@ function initCardDeck() {
     flex: 1 0 auto;
   }
   
+</style>
+
+<style lang="scss">
+  // Import Bulma's core
+  @import "~bulma/sass/utilities/_all";
+  $tectonic: #00426b;
+  // Set your colors
+  $primary: #8c67ef;
+  $primary-invert: findColorInvert($primary);
+  $twitter: #4099FF;
+  $twitter-invert: findColorInvert($twitter);
+
+  // Setup $colors to use as bulma classes (e.g. 'is-twitter')
+  $colors: (
+      "white": ($white, $black),
+      "black": ($black, $white),
+      "light": ($light, $light-invert),
+      "dark": ($dark, $dark-invert),
+      "primary": ($primary, $primary-invert),
+      "info": ($info, $info-invert),
+      "success": ($success, $success-invert),
+      "warning": ($warning, $warning-invert),
+      "danger": ($danger, $danger-invert),
+      "twitter": ($twitter, $twitter-invert)
+  );
+
+  // Links
+  $link: $primary;
+  $link-invert: $primary-invert;
+  $link-focus-border: $primary;
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
 </style>

@@ -4,20 +4,17 @@
     v-bind:class="{'is-selected':person.selected, 'is-disabled':person.disabled, 'is-matched':person.matched }"
     @click="pickCard" 
   >
-    <p>
+    
       <img :src="person.thumbnail">
       <!-- <input type="checkbox" v-model="person.selected" :disabled="person.disabled == 1 ? true : false" > -->
       <div v-if="person.selected || person.matched">
         <h4>{{ person.title }}</h4>
       </div>  
-    </p>
+    
   </div>
 </template>
 
 <script>
-
-
-import {_} from 'vue-underscore';
 
 export default {
   name: "PersonItem",
