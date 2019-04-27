@@ -51,17 +51,10 @@ export default {
       people_api_error: false,
       people_api_error_msg: null,
       people_api_loading: true,
-      selection_counter: 0,
       pairs_to_match: 3
     }
   },
   methods: {
-    pickCard: function (id){
-      console.log('App.vue pickCard fired')
-      // console.log('Person ID: '+id)
-      let choices = _.where(this.deckOfPeople,{selected: true})
-      if(choices.length == 2) this.checkSelections(choices)
-    },
     gameStarted: function () {
       // New game stared. User can read instructions prior to starting timer
       console.info('Game started');
@@ -78,13 +71,12 @@ export default {
       // @TODO - possibly have a setting for max wrong answers
       console.info('Game fail - too many wrong answers');
     },
-    // selectPerson: function (id) {
-    //   // Cards should be shuffled at the game start to avoid cheating
-    //   console.info('selectPerson fired - with ID: ' +id);
-    //   this.deckOfPeople[id].selected = true
-    //   // console.log(this.deckOfPeople[id].title)
-    //   // this.selection_counter = this.selection_counter+1;
-    // },
+    pickCard: function (id){
+      console.log('App.vue pickCard fired')
+      // console.log('Person ID: '+id)
+      let choices = _.where(this.deckOfPeople,{selected: true})
+      if(choices.length == 2) this.checkSelections(choices)
+    },
     checkSelections: function (choices) {
       console.log('fired checkSelectedCards',choices);
       for (var i = 0; i < choices.length; i++) {
@@ -98,13 +90,7 @@ export default {
         choices[0].selected = false
         choices[1].selected = false
       }
-    },
-    resetSelection() {
-      console.log('resetSelection')
-      for (var i = 0; i < this.deckOfPeople.length; i++) {
-        console.log(this.deckOfPeople[i]);
-        this.deckOfPeople[i].selected = false
-      }
+      _.find(this.deckOfPeople,{matched: false}) ? console.log('keep going') : console.log('game over')
     },
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
@@ -160,9 +146,6 @@ export default {
       console.log('deckOfPeople: Watch fired')
       // console.log('PREV deckOfCards: ',oldValue)
       // console.log('UPDATED deckOfCards: ',newValue)
-    },
-    selection_counter: function () {
-      if(this.selection_counter >1) this.checkSelection()
     }
   },
   mounted () {
