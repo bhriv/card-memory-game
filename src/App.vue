@@ -118,7 +118,7 @@ export default {
             peopleData[i] = {
               id: i,
               title: peopleData[i].name.first+'-'+peopleData[i].name.last,
-              thumbnail: peopleData[i].picture.thumbnail,
+              thumbnail: peopleData[i].picture.medium,
               selected: false,
               matched: false,
               disabled: false

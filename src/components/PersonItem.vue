@@ -8,7 +8,7 @@
     
     <div v-if="person.selected || person.matched">
       <span>
-        <h4>{{ person.title }}</h4>
+        <!-- <h4>{{ person.title }}</h4> -->
         <img :src="person.thumbnail">
       </span>
     </div>  

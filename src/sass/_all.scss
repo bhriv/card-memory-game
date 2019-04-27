@@ -2,7 +2,8 @@
   @import "~bulma/sass/utilities/_all";
   $tectonic: #00426b;
   // Set your colors
-  $primary: #8c67ef;
+  // $primary: #8c67ef;
+  $primary: $tectonic;
   $primary-invert: findColorInvert($primary);
   $twitter: #4099FF;
   $twitter-invert: findColorInvert($twitter);
