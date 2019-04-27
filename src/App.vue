@@ -16,6 +16,7 @@
         v-bind:deckOfPeople="deckOfPeople" 
         v-on:select-person="selectPerson" 
         v-on:reset-people="createDeckOfPeople" 
+        v-on:check-selection="checkSelection" 
       /> 
     </section>
 
@@ -56,6 +57,9 @@ export default {
     }
   },
   methods: {
+    updateCart: function (){
+      console.log('updateCart in App.vue')
+    },
     gameStarted: function () {
       // New game stared. User can read instructions prior to starting timer
       console.info('Game started');
@@ -74,30 +78,31 @@ export default {
     },
     selectPerson: function (id) {
       // Cards should be shuffled at the game start to avoid cheating
-      console.info('Person selected with ID:' +id);
+      console.info('selectPerson fired - with ID: ' +id);
       this.deckOfPeople[id].selected = true
-      this.selection_counter = this.selection_counter+1;
+      // console.log(this.deckOfPeople[id].title)
+      // this.selection_counter = this.selection_counter+1;
     },
     checkSelection: function () {
       console.log('fired checkSelectedCards');
-      let choices = _.where(this.deckOfPeople,{selected: true})
-      console.log('choices: ',choices);
-      if (choices[0].title === choices[1].title) {
-        alert('Matched Pair Found!!')
-        let matchedPairs = _.where(this.deckOfPeople,{title: choices[0].title})
+      // let choices = _.where(this.deckOfPeople,{selected: true})
+      // console.log('choices: ',choices);
+      // if (choices[0].title === choices[1].title) {
+      //   alert('Matched Pair Found!!')
+      //   let matchedPairs = _.where(this.deckOfPeople,{title: choices[0].title})
 
-        for (var i = 0; i < matchedPairs.length; i++) {
-          let targetCard = _.findWhere(this.deckOfPeople,{title: matchedPairs[i].title})
-          console.log('targetCard',targetCard)
-          targetCard.matched = true
-          targetCard.disabled = 1
-        }
-        setTimeout(this.resetSelection, 3000)
-      }else{
-        alert(':( Try again')
-        setTimeout(this.resetSelection, 3000)
-      }
-      this.selection_counter = 0
+      //   for (var i = 0; i < matchedPairs.length; i++) {
+      //     let targetCard = _.findWhere(this.deckOfPeople,{title: matchedPairs[i].title})
+      //     console.log('targetCard',targetCard)
+      //     targetCard.matched = true
+      //     targetCard.disabled = 1
+      //   }
+      //   setTimeout(this.resetSelection, 3000)
+      // }else{
+      //   alert(':( Try again')
+      //   setTimeout(this.resetSelection, 3000)
+      // }
+      // this.selection_counter = 0
     },
     resetSelection() {
       console.log('resetSelection')
@@ -119,13 +124,19 @@ export default {
           
           for (var i = 0; i < peopleData.length; i++) {
             peopleData[i] = {
+              id: i,
               title: peopleData[i].name.first+'-'+peopleData[i].name.last,
               thumbnail: peopleData[i].picture.thumbnail,
+              selected: false,
+              matched: false,
+              disabled: false
             }
           }
           
           // Separate Memory Game Data from API Data for future expansion
+          // Avoid duplicated ID
           let memoryData = [];
+
           for (var j = 0; j < peopleData.length; j++) {
            memoryData[j] = {
               id: j,
@@ -136,9 +147,10 @@ export default {
               disabled: false
             }
           }
+          this.deckOfPeople = _.shuffle(memoryData);
           console.log('deck of People with memoryData',memoryData)
           // Shuffle Deck
-          this.deckOfPeople = _.shuffle(memoryData);
+          
         })
         .catch(error => {
           console.log(error)
@@ -149,10 +161,10 @@ export default {
     }
   },
   watch: {
-    deckOfCards: function(newValue, oldValue) {
-      console.log('deckOfCards: Watch fired')
-      console.log('PREV deckOfCards: ',oldValue)
-      console.log('UPDATED deckOfCards: ',newValue)
+    deckOfPeople: function(newValue, oldValue) {
+      console.log('deckOfPeople: Watch fired')
+      // console.log('PREV deckOfCards: ',oldValue)
+      // console.log('UPDATED deckOfCards: ',newValue)
     },
     selection_counter: function () {
       if(this.selection_counter >1) this.checkSelection()
