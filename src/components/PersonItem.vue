@@ -14,26 +14,11 @@
   </div>
 </template>
 
-<script>
-
-export default {
-  name: "PersonItem",
-  props: ["person"],
-  methods: {
-    pickCard() {
-      // toggle boolean for the person.selected value
-      this.person.selected = !this.person.selected;
-      this.$emit('pick-card',this.person.id)
-    }
-  }
-}
-</script>
-
 
 <style lang="scss" scoped>
   .box{
     min-height: 100px;
-    background: src('~/assets/tectonic_mountains.png') no-repeat;
+    
     img{
       border-radius: 50%;
       visibility: hidden;
@@ -50,4 +35,22 @@ export default {
     }
   }
 </style>
+
+<script>
+
+export default {
+  name: "PersonItem",
+  props: ["person"],
+  methods: {
+    pickCard() {
+      // toggle boolean for the person.selected value
+      this.person.selected = !this.person.selected;
+      this.$emit('pick-card',this.person.id)
+    }
+  }
+}
+</script>
+
+
+
 
