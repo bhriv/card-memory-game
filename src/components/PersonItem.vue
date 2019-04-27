@@ -7,8 +7,10 @@
     
     
     <div v-if="person.selected || person.matched">
-      <h4>{{ person.title }}</h4>
-      <img :src="person.thumbnail">
+      <span>
+        <h4>{{ person.title }}</h4>
+        <img :src="person.thumbnail">
+      </span>
     </div>  
     
   </div>
@@ -16,19 +18,47 @@
 
 
 <style lang="scss" scoped>
+
+  @keyframes rotate {
+    from {
+      transform: rotateY(0deg); 
+    }
+    to {
+      transform: rotateY(180deg);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
   .box{
     min-height: 200px;
-    
+    backface-visibility: hidden; 
+    text-align: center;
     img{
       border-radius: 50%;
       visibility: hidden;
     }
     &.is-selected{
+      backface-visibility: visible; 
+      // animation: rotate 1s ease 0s alternate none;
+      animation: rotate 0.15s ease 0s alternate none;
+      span{
+
+        animation: fadeIn 0.5s ease 0s normal none;
+      }
       img{
         visibility: visible;
       }
     }
     &.is-matched{
+      backface-visibility: visible; 
       img{
         visibility: visible;
       }
