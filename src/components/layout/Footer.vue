@@ -1,7 +1,14 @@
 <template>
-  <footer class="footer">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <footer>
+  <div class="content has-text-centered">
+    <p>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </p>
+    <p>
+      <strong>Memory Game</strong> by <a href="https://github.com/bhriv">Benjamin Richards IV</a>.
+    </p>
+  </div>
   </footer>
 </template>
 
@@ -10,16 +17,4 @@ export default {
   name: "Header"
 }
 </script>
-
-<style scoped>
-  footer {
-    position: absolute;
-    bottom: 0;
-    padding: 1em;
-    text-aligh: center;
-    width: 100%;
-    font-size: 12px
-  }
-</style>
-
 
