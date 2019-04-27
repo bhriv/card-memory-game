@@ -1,12 +1,10 @@
 <template>
   <div id="app">
     <Header />
-
     <router-view/>
 
     <section v-if="people_api_error">
-      <p>We're not able to retrieve random Person data from the API at this moment. The following reason was given: <span class="error">{{ people_api_error_msg }}</span></p>
-      <p>Fallback data will be used for the game.</p>
+      <ApiError />
       <Cards v-bind:deckOfCards="deckOfCards" /> 
     </section>
 
@@ -30,6 +28,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Cards from './components/Cards';
 import People from './components/People';
+import ApiError from './components/layout/ApiError';
 
 // Vendor
 import axios from 'axios';
@@ -42,7 +41,8 @@ export default {
     Header,
     Footer,
     Cards,
-    People
+    People,
+    ApiError
   },
   data() {
     return {
@@ -199,62 +199,9 @@ function initCardDeck() {
 }
 </script>
 
+<!-- Use Material Design Icons -->
 <style type="text/css" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css"></style>
-<style>
-
-  html, body {
-    height: 100%;
-  }
-  body {
-    display: flex;
-    flex-direction: column;
-  }
-
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-  }
-
-  .content {
-    flex: 1 0 auto;
-  }
-  
-</style>
-
+<!-- Bulma / Buefy Styles -->
 <style lang="scss">
-  // Import Bulma's core
-  @import "~bulma/sass/utilities/_all";
-  $tectonic: #00426b;
-  // Set your colors
-  $primary: #8c67ef;
-  $primary-invert: findColorInvert($primary);
-  $twitter: #4099FF;
-  $twitter-invert: findColorInvert($twitter);
-
-  // Setup $colors to use as bulma classes (e.g. 'is-twitter')
-  $colors: (
-      "white": ($white, $black),
-      "black": ($black, $white),
-      "light": ($light, $light-invert),
-      "dark": ($dark, $dark-invert),
-      "primary": ($primary, $primary-invert),
-      "info": ($info, $info-invert),
-      "success": ($success, $success-invert),
-      "warning": ($warning, $warning-invert),
-      "danger": ($danger, $danger-invert),
-      "twitter": ($twitter, $twitter-invert)
-  );
-
-  // Links
-  $link: $primary;
-  $link-invert: $primary-invert;
-  $link-focus-border: $primary;
-
-// Import Bulma and Buefy styles
-@import "~bulma";
-@import "~buefy/src/scss/buefy";
-
+  @import "./sass/all";
 </style>
