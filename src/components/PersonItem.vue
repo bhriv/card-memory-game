@@ -5,7 +5,6 @@
     @click="pickCard" 
   >
     
-    
     <div v-if="person.selected || person.matched">
       <span>
         <!-- <h4>{{ person.title }}</h4> -->
@@ -30,10 +29,12 @@
 
   @keyframes fadeIn {
     from {
-      opacity: 0.5;
+      opacity: 0.8;
+      width: 0;
     }
     to {
       opacity: 1;
+      width: initial;
     }
   }
   
@@ -50,8 +51,7 @@
       // animation: rotate 1s ease 0s alternate none;
       animation: rotate 0.15s ease 0s alternate none;
       span{
-
-        animation: fadeIn 0.5s ease 0s normal none;
+        animation: fadeIn 0.4s ease 0.15s normal none;
       }
       img{
         visibility: visible;
@@ -70,7 +70,7 @@
 
 export default {
   name: "PersonItem",
-  props: ["person"],
+  props: ["person","isSwitchedCustom"],
   methods: {
     pickCard() {
       // toggle boolean for the person.selected value

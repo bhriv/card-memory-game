@@ -29,6 +29,7 @@ import Footer from './components/layout/Footer';
 import Cards from './components/Cards';
 import People from './components/People';
 import ApiError from './components/layout/ApiError';
+import store from './store';
 
 // Vendor
 import axios from 'axios';
@@ -51,9 +52,26 @@ export default {
       people_api_error: false,
       people_api_error_msg: null,
       people_api_loading: true,
-      pairs_to_match: 2
+      pairs_to_match: 2,
+      radio: "Jack",
+      // gameMode: 'Yes'
     }
   },
+  created() {
+    console.log('App created now');
+    console.log('count: '+store.state.count) // -> 1
+  },
+  mounted () {
+    console.log('App mounted now');
+    console.log(this.deckOfCards);
+    this.createDeckOfPeople()
+  },
+  // computed: {
+  //   switchMode: function(){
+  //     console.log('switchMode')
+  //     // this.$emit('pick-card',this.person.id)
+  //   }
+  // },
   methods: {
     gameStarted: function () {
       // New game stared. User can read instructions prior to starting timer
@@ -62,6 +80,9 @@ export default {
     gameEnded: function () {
       // fire at the end of the game. Use to trigger posting the results
       console.info('Game ended');
+      store.commit('increment')
+      console.log('count: '+store.state.count) // -> 1
+
       this.$dialog.confirm({
           title: 'You Did It!',
           message: 'Play Again?',
@@ -159,14 +180,6 @@ export default {
       // console.log('UPDATED deckOfCards: ',newValue)
     }
   },
-  mounted () {
-    console.log('App mounted now');
-    console.log(this.deckOfCards);
-    this.createDeckOfPeople()
-  },
-  created() {
-    console.log('App created now');
-  }
 }
 
 

@@ -1,12 +1,8 @@
 <template>
   <div id="page-people" class="container">
+    <strong>{{ counter_title }}:</strong> {{ count }}
+
     <button @click="$emit('reset-people')">Reset Deck</button>
-
-    <b-field>
-        <b-numberinput step="2" min="4" max="12" @click="increment">
-        </b-numberinput>
-    </b-field>
-
       <div class="columns is-mobile">
         <div v-bind:key="person.id" v-for="person in deckOfPeople" class="column is-one-quarter">
           <PersonItem v-bind:person="person" @pick-card="$emit('pick-card',person.id)"/>
@@ -19,18 +15,24 @@
 <script>
 // Get single tempalte
 import PersonItem from './PersonItem.vue';
+import store from '@/store';
 
 export default {
   name: "People",
   components: {
     PersonItem
   },
-  props: ["deckOfPeople"],
+  props: ["deckOfPeople","gameMode"],
   methods: {
-    increment: function (){
-      console.log('increment fired')
+  },
+  computed: { // retrieve current data state 
+    count () { // is computation is called by {{ count }} in the template
+      return store.state.count
+    },
+    counter_title () {
+      return store.state.counter_title
     }
-  }
+  },
 }
 </script>
 
