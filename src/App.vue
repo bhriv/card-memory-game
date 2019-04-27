@@ -106,7 +106,7 @@ export default {
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
       axios
-        .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match+'&nat=us')
+        .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*2+'&nat=us')
         // .get('https://evtask.t12y.net/assets')
         .then(response => {
           // console.log(response.data.results)

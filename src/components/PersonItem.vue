@@ -17,7 +17,7 @@
 
 <style lang="scss" scoped>
   .box{
-    min-height: 100px;
+    min-height: 200px;
     
     img{
       border-radius: 50%;
