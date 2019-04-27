@@ -1,15 +1,15 @@
 <template>
   <div
-    class="card-item" 
+    class="box" 
     v-bind:class="{'is-selected':person.selected, 'is-disabled':person.disabled, 'is-matched':person.matched }"
     @click="pickCard" 
   >
     
+    
+    <div v-if="person.selected || person.matched">
+      <h4>{{ person.title }}</h4>
       <img :src="person.thumbnail">
-      <!-- <input type="checkbox" v-model="person.selected" :disabled="person.disabled == 1 ? true : false" > -->
-      <div v-if="person.selected || person.matched">
-        <h4>{{ person.title }}</h4>
-      </div>  
+    </div>  
     
   </div>
 </template>
@@ -30,31 +30,23 @@ export default {
 </script>
 
 
-<style scoped>
-
-  .card-item{
-    font-size: 10px;
-    margin: 2px;
-    background-color: lightblue;
-    text-align: center;
-    padding: 1em;
-    align-items: center;
-  }
-  .card-item img{
-    visibility: hidden;
-  }
-  .card-item.is-selected img,
-  .card-item.is-matched img
-  {
-    visibility: visible;
-  }
-  h4{
-    text-transform: capitalize;
-  }
-  img{
-    margin: 5px;
-    border-radius: 50%;
-    cursor: pointer;
+<style lang="scss" scoped>
+  .box{
+    min-height: 100px;
+    img{
+      border-radius: 50%;
+      visibility: hidden;
+    }
+    &.is-selected{
+      img{
+        visibility: visible;
+      }
+    }
+    &.is-matched{
+      img{
+        visibility: visible;
+      }
+    }
   }
 </style>
 
