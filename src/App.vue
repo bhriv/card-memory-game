@@ -14,9 +14,8 @@
       <div v-if="people_api_loading">Loading data...</div>
       <People 
         v-bind:deckOfPeople="deckOfPeople" 
-        v-on:select-person="selectPerson" 
         v-on:reset-people="createDeckOfPeople" 
-        v-on:check-selection="checkSelection" 
+        @pick-card="pickCard"
       /> 
     </section>
 
@@ -57,8 +56,11 @@ export default {
     }
   },
   methods: {
-    updateCart: function (){
-      console.log('updateCart in App.vue')
+    pickCard: function (id){
+      console.log('App.vue pickCard fired')
+      // console.log('Person ID: '+id)
+      let choices = _.where(this.deckOfPeople,{selected: true})
+      if(choices.length == 2) this.checkSelections(choices)
     },
     gameStarted: function () {
       // New game stared. User can read instructions prior to starting timer
@@ -76,33 +78,26 @@ export default {
       // @TODO - possibly have a setting for max wrong answers
       console.info('Game fail - too many wrong answers');
     },
-    selectPerson: function (id) {
-      // Cards should be shuffled at the game start to avoid cheating
-      console.info('selectPerson fired - with ID: ' +id);
-      this.deckOfPeople[id].selected = true
-      // console.log(this.deckOfPeople[id].title)
-      // this.selection_counter = this.selection_counter+1;
-    },
-    checkSelection: function () {
-      console.log('fired checkSelectedCards');
-      // let choices = _.where(this.deckOfPeople,{selected: true})
-      // console.log('choices: ',choices);
-      // if (choices[0].title === choices[1].title) {
-      //   alert('Matched Pair Found!!')
-      //   let matchedPairs = _.where(this.deckOfPeople,{title: choices[0].title})
-
-      //   for (var i = 0; i < matchedPairs.length; i++) {
-      //     let targetCard = _.findWhere(this.deckOfPeople,{title: matchedPairs[i].title})
-      //     console.log('targetCard',targetCard)
-      //     targetCard.matched = true
-      //     targetCard.disabled = 1
-      //   }
-      //   setTimeout(this.resetSelection, 3000)
-      // }else{
-      //   alert(':( Try again')
-      //   setTimeout(this.resetSelection, 3000)
-      // }
-      // this.selection_counter = 0
+    // selectPerson: function (id) {
+    //   // Cards should be shuffled at the game start to avoid cheating
+    //   console.info('selectPerson fired - with ID: ' +id);
+    //   this.deckOfPeople[id].selected = true
+    //   // console.log(this.deckOfPeople[id].title)
+    //   // this.selection_counter = this.selection_counter+1;
+    // },
+    checkSelections: function (choices) {
+      console.log('fired checkSelectedCards',choices);
+      for (var i = 0; i < choices.length; i++) {
+        if (choices[0].title === choices[1].title) {
+          console.log('Matched Pair Found!!')
+          choices[0].matched = true
+          choices[0].disabled = 1
+          choices[1].matched = true
+          choices[1].disabled = 1
+        }
+        choices[0].selected = false
+        choices[1].selected = false
+      }
     },
     resetSelection() {
       console.log('resetSelection')

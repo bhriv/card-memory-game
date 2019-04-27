@@ -2,24 +2,15 @@
   <div
     class="card-item person-item" 
     v-bind:class="{'is-selected':person.selected, 'is-disabled':person.disabled, 'is-matched':person.matched }"
-    @click="markSelected" 
+    @click="pickCard" 
   >
     <p>
-      <!-- @click="$emit('select-person',person.id)"  -->
-      <!-- <button @click="$emit('select-person', person.id)">Select Person</button> -->
-      <button class="Button" @click="addToCart(person)">Add To Cart</button>
-      <img :src="person.thumbnail" :title="person.title" :alt="person.title">
-      <!-- <input type="checkbox" v-model="person.selected" :disabled="person.disabled == 1 ? true : false" > -->
-      
-      <!-- $emit('select-person', person.id) -->
-      <!-- {{person}} -->
+      <img :src="person.thumbnail">
+      <input type="checkbox" v-model="person.selected" :disabled="person.disabled == 1 ? true : false" >
       <div v-if="person.selected || person.matched">
         <h4>{{ person.title }}</h4>
       </div>  
     </p>
-  
-
-    
   </div>
 </template>
 
@@ -32,14 +23,10 @@ export default {
   name: "PersonItem",
   props: ["person"],
   methods: {
-    markSelected() {
-      console.log('markSelected')
+    pickCard() {
       // toggle boolean for the person.selected value
       this.person.selected = !this.person.selected;
-
-    },
-    addToCart(item) {
-      this.$emit('update-cart', person)
+      this.$emit('pick-card',this.person.id)
     }
   }
 }
