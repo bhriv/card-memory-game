@@ -6,7 +6,7 @@
   >
     <p>
       <img :src="person.thumbnail">
-      <input type="checkbox" v-model="person.selected" :disabled="person.disabled == 1 ? true : false" >
+      <!-- <input type="checkbox" v-model="person.selected" :disabled="person.disabled == 1 ? true : false" > -->
       <div v-if="person.selected || person.matched">
         <h4>{{ person.title }}</h4>
       </div>  
@@ -46,6 +46,14 @@ export default {
     text-align: center;
     padding: 1em;
     align-items: center;
+  }
+  .card-item img{
+    visibility: hidden;
+  }
+  .card-item.is-selected img,
+  .card-item.is-matched img
+  {
+    visibility: visible;
   }
   h4{
     text-transform: capitalize;

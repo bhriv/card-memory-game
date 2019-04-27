@@ -87,8 +87,10 @@ export default {
           choices[1].matched = true
           choices[1].disabled = 1
         }
-        choices[0].selected = false
-        choices[1].selected = false
+        setTimeout(function () {
+          choices[0].selected = false
+          choices[1].selected = false
+        }, 2000)
       }
       _.find(this.deckOfPeople,{matched: false}) ? console.log('keep going') : console.log('game over')
     },
