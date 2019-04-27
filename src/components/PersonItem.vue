@@ -7,8 +7,8 @@
     
     <div v-if="person.selected || person.matched">
       <span>
-        <!-- <h4>{{ person.title }}</h4> -->
         <img :src="person.thumbnail">
+        <h4>{{ person.title }}</h4>
       </span>
     </div>  
     
@@ -76,6 +76,8 @@ export default {
       // toggle boolean for the person.selected value
       this.person.selected = !this.person.selected;
       this.$emit('pick-card',this.person.id)
+      var audio = new Audio('http://bhriv.com/sites/tectonic/game/audio/card-filp.mp3');
+      audio.play();
     }
   }
 }

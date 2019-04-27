@@ -23,6 +23,11 @@ export default {
     PersonItem
   },
   props: ["deckOfPeople","gameMode"],
+  mounted () {
+    console.log('People.vue mounted now');
+    var audio = new Audio('http://bhriv.com/sites/tectonic/game/audio/card-filp.mp3');
+    audio.preload;
+  },
   methods: {
   },
   computed: { // retrieve current data state 

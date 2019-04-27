@@ -9,7 +9,10 @@
     </section>
 
     <section v-else>
-      <div v-if="people_api_loading">Loading data...</div>
+      <div v-if="people_api_loading">
+      Loading data...
+      <div class="loading"></div>
+    </div>
       <People 
         v-on:reset-people="createDeckOfPeople" 
         v-bind:deckOfPeople="deckOfPeople" 
@@ -35,6 +38,10 @@ import store from './store';
 import axios from 'axios';
 import {_} from 'vue-underscore';
 
+const deck_audio = new Audio('http://bhriv.com/sites/tectonic/game/audio/Card-flip-sound-effect.mp3');
+deck_audio.preload;
+
+
 // App 
 export default {
   name:"app",
@@ -52,7 +59,7 @@ export default {
       people_api_error: false,
       people_api_error_msg: null,
       people_api_loading: true,
-      pairs_to_match: 2,
+      pairs_to_match: store.state.pairs,
       radio: "Jack",
       // gameMode: 'Yes'
     }
@@ -63,8 +70,7 @@ export default {
   },
   mounted () {
     console.log('App mounted now');
-    console.log(this.deckOfCards);
-    this.createDeckOfPeople()
+    this.gameStart()
   },
   // computed: {
   //   switchMode: function(){
@@ -73,20 +79,22 @@ export default {
   //   }
   // },
   methods: {
-    gameStarted: function () {
+    gameStart: function () {
       // New game stared. User can read instructions prior to starting timer
       console.info('Game started');
+      store.commit('incrementGameCount')
+      console.log(this.deckOfCards);
+      this.createDeckOfPeople()
+      // deck_audio.play();
     },
     gameEnded: function () {
       // fire at the end of the game. Use to trigger posting the results
       console.info('Game ended');
-      store.commit('increment')
-      console.log('count: '+store.state.count) // -> 1
-
+      store.commit('incrementPairsCount')
       this.$dialog.confirm({
-          title: 'You Did It!',
-          message: 'Play Again?',
-          onConfirm: () => this.createDeckOfPeople()
+        title: 'You Did It!',
+        message: 'Play Again?',
+        onConfirm: () => this.gameStart()
       })
     },
     gameTimeout: function () {
@@ -111,6 +119,10 @@ export default {
           choices[0].disabled = 1
           choices[1].matched = true
           choices[1].disabled = 1
+        }else{
+          setTimeout(function () {
+            deck_audio.play();
+          }, 1950)
         }
         setTimeout(function () {
           choices[0].selected = false
@@ -127,10 +139,11 @@ export default {
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
       axios
-        .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*2+'&nat=us')
+        .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*store.state.count+'&nat=us')
         // .get('https://evtask.t12y.net/assets')
         .then(response => {
           // console.log(response.data.results)
+
           this.deckOfPeople = response.data.results;
           // Create Double Stack Deck
           let peopleData = this.deckOfPeople.concat(this.deckOfPeople);

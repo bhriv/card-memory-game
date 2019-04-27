@@ -5,13 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    counter_title: 'Game Count',
-    count: 1
+    counter_title: 'Level',
+    count: 0,
+    mistakes: 0,
+    pairs: 2
   },
   mutations: {
-    increment (state) {
-      state.counter_title++
-    }
+    incrementGameCount (state) {
+      state.count++
+    },
+    incrementPairsCount (state) {
+      state.pairs++
+    },
   },
   actions: {
 
