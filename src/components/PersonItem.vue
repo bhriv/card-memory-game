@@ -1,6 +1,6 @@
 <template>
   <div
-    class="box" 
+    class="box has-background-white-ter" 
     v-bind:class="{'is-selected':person.selected, 'is-disabled':person.disabled, 'is-matched':person.matched }"
     @click="pickCard" 
   >
@@ -33,6 +33,7 @@ export default {
 <style lang="scss" scoped>
   .box{
     min-height: 100px;
+    background: src('~/assets/tectonic_mountains.png') no-repeat;
     img{
       border-radius: 50%;
       visibility: hidden;
