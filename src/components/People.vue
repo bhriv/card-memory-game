@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div id="page-people" class="container">
     <button @click="$emit('reset-people')">Reset Deck</button>
       <div class="columns is-mobile">
         <div v-bind:key="person.id" v-for="person in deckOfPeople" class="column is-one-quarter">
