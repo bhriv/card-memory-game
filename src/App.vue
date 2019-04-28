@@ -85,7 +85,7 @@ export default {
       // New game stared. User can read instructions prior to starting timer
       console.info('Game started');
       store.commit('incrementGameCount')
-      console.log(this.deckOfCards);
+      // console.log(this.deckOfCards);
       this.createDeckOfPeople()
       // deck_audio.play();
     },
@@ -145,13 +145,20 @@ export default {
         .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*store.state.count+'&nat=us')
         // .get('https://evtask.t12y.net/assets')
         .then(response => {
-          let tempDeck = response.data.results;
-
+          // People Data from API
+          let peopleData = response.data.results
+          // Generate random coffee orders
+          let coffeeData = _.first(_.shuffle(store.state.coffee),peopleData.length)
+          
           // Create Double Stack Deck
-          let peopleData = tempDeck.concat(tempDeck);
+          peopleData = peopleData.concat(peopleData);
+          coffeeData = coffeeData.concat(coffeeData);
+          // console.log('peopleData concat',peopleData)
+          // Add data
           for (var i = 0; i < peopleData.length; i++) {
             peopleData[i] = {
               id: i,
+              coffee: coffeeData[i],
               title: peopleData[i].name.first+'-'+peopleData[i].name.last,
               name: peopleData[i].name.first+' '+peopleData[i].name.last,
               thumbnail: peopleData[i].picture.medium,
@@ -171,7 +178,9 @@ export default {
               id: j,
               title: peopleData[j].title, 
               name: peopleData[j].name, 
+              coffee: peopleData[j].coffee, 
               thumbnail: peopleData[j].thumbnail, 
+              coffee: coffeeData[j],
               selected: false,
               matched: false,
               disabled: false
@@ -206,7 +215,7 @@ export default {
 // FUNCTIONS OUTSIDE OF APP - TO PERSIST DATA MODEL
 // Used to reset the data to resart the game
 function initCardDeck() {
-  console.log('initCardDeck')
+  // console.log('initCardDeck')
 
   return [
     {

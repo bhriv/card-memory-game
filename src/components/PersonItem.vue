@@ -9,6 +9,7 @@
       <span>
         <img :src="person.thumbnail">
         <h4>{{ person.name }}</h4>
+        <h4>{{ person.coffee }}</h4>
       </span>
     </div>  
     
