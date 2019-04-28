@@ -1,8 +1,9 @@
 <template>
   <div id="page-people" class="container">
-    <strong>{{ counter_title }}:</strong> {{ count }}
-
-    <button @click="$emit('reset-people')">Reset Deck</button>
+    <p id="top_controls">
+      <b-button @click="$emit('reset-people')">Reset Deck</b-button> 
+      <span><strong>{{ counter_title }}:</strong> {{ count }}</span>
+    </p>
       <div class="columns is-mobile">
         <div v-bind:key="person.id" v-for="person in deckOfPeople" class="column is-one-quarter">
           <PersonItem v-bind:person="person" @pick-card="$emit('pick-card',person.id)"/>
@@ -43,7 +44,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style scoped>
+<style lang="scss" scoped>
+#top_controls{
+  margin-bottom: 1em;
+  span{
+    padding: 1rem;
+  }
+}
 .columns{
   flex-wrap: wrap;
 }

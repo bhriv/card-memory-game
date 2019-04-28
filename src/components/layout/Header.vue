@@ -17,7 +17,7 @@
         
         <div id="nav">
           <router-link to="/">Play Game</router-link> |
-          <router-link to="/about">About</router-link>
+          <router-link to="/about">Info</router-link>
         </div>
       </div>
     </div>
