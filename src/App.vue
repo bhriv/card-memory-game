@@ -125,7 +125,7 @@ export default {
           choices[1].disabled = 1
         }else{
           setTimeout(function () {
-            deck_audio.play();
+            deck_deal.play();
           }, 1950)
         }
         setTimeout(function () {
@@ -179,7 +179,6 @@ export default {
           }
 
           this.deckOfPeople = _.shuffle(memoryData);
-
           deck_deal.play()
           console.log('deck of People with memoryData',memoryData)
           // Shuffle Deck
