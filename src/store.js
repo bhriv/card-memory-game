@@ -8,7 +8,8 @@ export default new Vuex.Store({
     counter_title: 'Level',
     count: 0,
     mistakes: 0,
-    pairs: 2
+    pairs: 2,
+    coffee: ["espresso","double espresso","latte","flat white","long black","cafe latte","piccolo latte","cappuccino","americano","macchiato","mochaccino","ristretto","long macchiato","affogato"]
   },
   mutations: {
     incrementGameCount (state) {

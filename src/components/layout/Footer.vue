@@ -7,11 +7,11 @@
         </router-link> |
 
         <router-link to="/about">
-          <b-icon icon="alarm_on" size="is-small"></b-icon> About
+           About
         </router-link>
       </p>
       <p>
-        <strong>Memory Game</strong> by <a href="https://github.com/bhriv">Benjamin Richards IV</a>.
+        <small><strong>Created</strong> by <a href="https://github.com/bhriv">Benjamin Richards IV</a></small>
       </p>
     </footer>
   </section>

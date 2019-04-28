@@ -8,7 +8,7 @@
     <div v-if="person.selected || person.matched">
       <span>
         <img :src="person.thumbnail">
-        <h4>{{ person.title }}</h4>
+        <h4>{{ person.name }}</h4>
       </span>
     </div>  
     
@@ -17,7 +17,9 @@
 
 
 <style lang="scss" scoped>
-
+  h4{
+    text-transform: capitalize;
+  }
   @keyframes rotate {
     from {
       transform: rotateY(0deg); 
