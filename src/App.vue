@@ -97,7 +97,7 @@ export default {
       store.commit('incrementPairsCount')
       this.$dialog.confirm({
         title: 'You Did It!',
-        message: 'Play Again?',
+        message: 'Ready for the next level?',
         onConfirm: () => this.gameStart()
       })
     },
