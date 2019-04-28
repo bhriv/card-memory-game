@@ -38,8 +38,11 @@ import store from './store';
 import axios from 'axios';
 import {_} from 'vue-underscore';
 
-const deck_audio = new Audio('http://bhriv.com/sites/tectonic/game/audio/Card-flip-sound-effect.mp3');
-deck_audio.preload;
+const deck_deal = new Audio('http://bhriv.com/sites/tectonic/game/audio/Card-flip-sound-effect.mp3');
+deck_deal.preload;
+
+const success_audio = new Audio('http://bhriv.com/sites/tectonic/game/audio/success.mp3');
+success_audio.preload;
 
 
 // App 
@@ -90,6 +93,7 @@ export default {
     gameEnded: function () {
       // fire at the end of the game. Use to trigger posting the results
       console.info('Game ended');
+      success_audio.play();
       store.commit('incrementPairsCount')
       this.$dialog.confirm({
         title: 'You Did It!',
@@ -143,7 +147,7 @@ export default {
         // .get('https://evtask.t12y.net/assets')
         .then(response => {
           // console.log(response.data.results)
-
+          
           this.deckOfPeople = response.data.results;
           // Create Double Stack Deck
           let peopleData = this.deckOfPeople.concat(this.deckOfPeople);
@@ -173,7 +177,10 @@ export default {
               disabled: false
             }
           }
+
           this.deckOfPeople = _.shuffle(memoryData);
+
+          deck_deal.play()
           console.log('deck of People with memoryData',memoryData)
           // Shuffle Deck
           
