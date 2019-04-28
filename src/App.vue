@@ -147,10 +147,10 @@ export default {
         // .get('https://evtask.t12y.net/assets')
         .then(response => {
           // console.log(response.data.results)
-          
-          this.deckOfPeople = response.data.results;
+          let tempDeck = response.data.results;
+          // this.deckOfPeople = response.data.results;
           // Create Double Stack Deck
-          let peopleData = this.deckOfPeople.concat(this.deckOfPeople);
+          let peopleData = tempDeck.concat(tempDeck);
           
           for (var i = 0; i < peopleData.length; i++) {
             peopleData[i] = {
