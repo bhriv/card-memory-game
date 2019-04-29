@@ -71,12 +71,6 @@ export default {
     margin-right: 0.1rem;
   }
   
-  .is-mobile > .column.is-one-quarter{
-    
-    .box{
-      height: 130px;
-    }
-  }
 
   .card-size-small.is-mobile > .column.is-one-quarter{
     width: 16.66%;

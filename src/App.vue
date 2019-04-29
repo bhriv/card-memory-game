@@ -17,7 +17,10 @@
 
     <section class="game-table" v-else>
       <div v-if="people_api_loading">
-        Loading data...
+        <b-notification aria-close-label="Close notification" role="alert">
+          Loading Data
+        </b-notification>
+        
       </div>
       <People 
         v-on:post-results="postResults" 
@@ -199,9 +202,9 @@ export default {
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
       let multiplier = store.state.count
-      if (store.state.count > 3) {
-        multiplier = Math.pow(store.state.count,2)
-      }
+      // if (store.state.count > 3) {
+      //   multiplier = Math.pow(store.state.count,2)
+      // }
 
       console.log('multiplier: '+multiplier)
       axios
