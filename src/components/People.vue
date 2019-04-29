@@ -4,7 +4,7 @@
     <div class="columns">
       <div class="column is-full">
         <b-button @click="$emit('new-deck')">Start Over</b-button> 
-        <b-button @click="$emit('reset-deck')">Redeal</b-button> 
+        <b-button @click="$emit('reset-deck')">Shuffle</b-button> 
         <!-- <b-button @click="$emit('post-results')">Post Results</b-button>  -->
         <span class="column is-pulled-right">
           <span><strong>{{ counter_title }}:</strong> {{ count }}</span>
@@ -70,7 +70,14 @@ export default {
   button{
     margin-right: 0.1rem;
   }
+  
+  .is-mobile > .column.is-one-quarter{
     
+    .box{
+      height: 130px;
+    }
+  }
+
   .card-size-small.is-mobile > .column.is-one-quarter{
     width: 16.66%;
     padding: 0.44%;
