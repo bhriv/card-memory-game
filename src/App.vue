@@ -39,13 +39,14 @@ import store from './store';
 import axios from 'axios';
 import {_} from 'vue-underscore';
 
+const thought_foundry_api_base = 'https://evtask.t12y.net/' 
+const bhriv_tectonic_api_base = 'http://bhriv.com/sites/tectonic/wp-json/' 
+
 const deck_deal = new Audio('http://bhriv.com/sites/tectonic/game/audio/Card-flip-sound-effect.mp3');
 deck_deal.preload;
 
 const success_audio = new Audio('http://bhriv.com/sites/tectonic/game/audio/success.mp3');
 success_audio.preload;
-
-const results_api_base = 'http://bhriv.com/sites/tectonic/wp-json/';
 // App 
 export default {
   name:"app",
@@ -78,6 +79,20 @@ export default {
   methods: {
     postResults: function () {
       console.info('postResults');
+      let payload = {
+        PuzzleResult: 'result-'+Date.now()
+      }
+
+      axios.post(thought_foundry_api_base+'results', {
+        PuzzleResult: 'result-'+Date.now()
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      
     },
     newDeck: function () {
       // New game stared. User can read instructions prior to starting timer
@@ -107,6 +122,7 @@ export default {
           position: 'is-bottom',
           duration: 3000
       })
+      this.postResults()
       this.gameStart()   
     },
     gameTimeout: function () {
@@ -152,13 +168,13 @@ export default {
         }else{
           setTimeout(function () {
             deck_deal.play();
-          }, 1450)
+          }, 1050)
         }
         
         setTimeout(function () {
           choices[0].selected = false
           choices[1].selected = false
-        }, 1500)
+        }, 1000)
       }
       if (_.find(this.deckOfPeople,{matched: false}) ) {
         console.log('keep going') 
@@ -176,7 +192,6 @@ export default {
 
       console.log('multiplier: '+multiplier)
       axios
-        // .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*store.state.count+'&nat=us')
         .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*multiplier)
         // .get('https://evtask.t12y.net/assets')
         .then(response => {

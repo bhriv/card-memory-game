@@ -5,7 +5,7 @@
       <div class="column is-full">
         <b-button @click="$emit('new-deck')">Start Over</b-button> 
         <b-button @click="$emit('reset-deck')">Redeal</b-button> 
-        <b-button @click="$emit('post-results')">Post Results</b-button> 
+        <!-- <b-button @click="$emit('post-results')">Post Results</b-button>  -->
         <span class="column is-pulled-right">
           <span><strong>{{ counter_title }}:</strong> {{ count }}</span>
         </span>
