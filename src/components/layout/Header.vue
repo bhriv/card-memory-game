@@ -2,21 +2,15 @@
   <section class="hero is-primary">
     <div class="hero-body">
       <div class="container">
-        <div class="columns is-mobile">
+        <div class="columns">
           <div class="column is-one-quarter">
             <div class="row cup espresso">
               <div class="pour_bottom"></div>
             </div>
           </div>
-          <div class="column has-text-centered">
+          <div class="column">
             <h1 class="title">Barista Memory Training</h1>
             <h2 class="subtitle">Know your customers. Know their order.</h2>
-          </div>
-          <div class="column is-one-quarter has-text-right">
-            <div id="nav">
-              <router-link to="/">Play Game</router-link> |
-              <router-link to="/about">Info</router-link>
-            </div>
           </div>
         </div>
       </div>
