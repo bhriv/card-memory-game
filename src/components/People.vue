@@ -1,7 +1,7 @@
 <template>
   <div id="page-people" class="container">
     <p id="top_controls">
-      <div class="columns is-vcentered">
+      <div class="columns is-centered">
         <div class="column is-one-column">
           <b-button @click="$emit('reset-deck')">Reset Deck</b-button> 
         </div>
@@ -57,5 +57,16 @@ export default {
   }
   .columns{
     flex-wrap: wrap;
+  }
+
+  .counter-2{
+    
+    .columns.is-mobile > .column.is-one-quarter{
+      width: 16%;
+
+      .box{
+        height: 130px;
+      }
+    }
   }
 </style>
