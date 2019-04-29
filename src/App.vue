@@ -277,4 +277,5 @@ function initCardDeck() {
   .hero-body{
     padding: 2rem;
   }
+
 </style>

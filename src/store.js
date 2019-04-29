@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     counter_title: 'Level',
-    count: 2,
+    count: 0,
     mistakes: 0,
     pairs: 2,
     coffee: ["espresso","double espresso","latte","flat white","long black","cafe latte","piccolo latte","cappuccino","americano","macchiato","mochaccino","ristretto","long macchiato","affogato"]
