@@ -51,6 +51,17 @@
   }
 }
 
+/* Portrait */
+.portrait-notification{
+  display: none;
+}
+@media only screen and (orientation: portrait) {
+  .portrait-notification{
+    display: block;
+  }
+}
+
+
 #page-people{
   .box{
     @include background-image-retina('tectonic_mountains','png',800px,159px)  

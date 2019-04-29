@@ -2,7 +2,14 @@
   <div id="app">
     <Header />
     <router-view/>
-
+    <div class="portrait-notification">
+      <b-notification
+          type="is-danger"
+          aria-close-label="Close notification"
+          role="alert">
+          Please rotate your device to landscape mode to enjoy the game.
+      </b-notification>
+    </div>
     <section class="game-table" v-if="people_api_error">
       <ApiError />
       <Cards v-bind:deckOfCards="deckOfCards" /> 
@@ -88,6 +95,12 @@ export default {
       })
       .then(function (response) {
         console.log(response);
+        this.$toast.open({
+          message: 'Results Posted. Server response: '+response,
+          type: 'is-success',
+          position: 'is-bottom',
+          duration: 1000
+        })
       })
       .catch(function (error) {
         console.log(error);
