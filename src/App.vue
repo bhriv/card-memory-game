@@ -13,6 +13,7 @@
         Loading data...
       </div>
       <People 
+        v-on:post-results="postResults" 
         v-on:new-deck="newDeck" 
         v-on:reset-deck="resetDeck" 
         v-bind:deckOfPeople="deckOfPeople" 
@@ -75,6 +76,9 @@ export default {
     this.gameStart()
   },
   methods: {
+    postResults: function () {
+      console.info('postResults');
+    },
     newDeck: function () {
       // New game stared. User can read instructions prior to starting timer
       console.info('New deck');
@@ -166,7 +170,7 @@ export default {
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
       let multiplier = store.state.count
-      if (store.state.count > 2) {
+      if (store.state.count > 3) {
         multiplier = Math.pow(store.state.count,2)
       }
 
