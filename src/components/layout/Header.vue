@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="container">
         <div class="columns">
-          <div class="column is-one-quarter">
+          <div class="column is-one-quarter" id="cup-holder">
             <div class="row cup espresso">
               <div class="pour_bottom"></div>
             </div>
@@ -31,11 +31,16 @@
       content: '';
     }
   }
+  $cup_height: 75px;
+  #cup-holder{
+    height: $cup_height;
+    margin-bottom: 1rem;
+  }
   .cup {
     margin-right: 2rem;
     float: left;
     width: 95px;
-    height: 75px;
+    height: $cup_height;
     background: #B7C3D0;
     border-radius: 3px 3px 40px 40px;
     z-index: 1;

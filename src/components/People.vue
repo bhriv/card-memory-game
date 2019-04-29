@@ -1,20 +1,19 @@
 <template>
   <div id="page-people" class="container">
-    <p id="top_controls">
-      <div class="columns is-centered">
-        <div class="column is-one-column">
-          <b-button @click="$emit('reset-deck')">Reset Deck</b-button> 
-        </div>
-        <div class="column has-text-right">
+    
+    <div class="columns">
+      <div class="column is-full">
+        <b-button @click="$emit('reset-deck')">Reset Deck</b-button> 
+        <span class="column is-pulled-right">
           <span><strong>{{ counter_title }}:</strong> {{ count }}</span>
-        </div>
+        </span>
       </div>
-    </p>
-      <div class="columns is-mobile">
-        <div v-bind:key="person.id" v-for="person in deckOfPeople" class="column is-one-quarter">
-          <PersonItem v-bind:person="person" @pick-card="$emit('pick-card',person)"/>
-        </div>
+    </div>
+    <div class="columns is-mobile">
+      <div v-bind:key="person.id" v-for="person in deckOfPeople" class="column is-one-quarter">
+        <PersonItem v-bind:person="person" @pick-card="$emit('pick-card',person)"/>
       </div>
+    </div>
   </div>
 </template>
 
@@ -49,11 +48,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
   #top_controls{
     margin-bottom: 1em;
-    span{
-      padding: 1rem;
-    }
   }
   .columns{
     flex-wrap: wrap;

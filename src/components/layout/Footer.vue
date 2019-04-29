@@ -4,6 +4,7 @@
       
       <p>
         <small>
+          <router-link to="/about">See Project Info </router-link> &vert; 
           <strong>Created</strong> by <a href="https://github.com/bhriv">Benjamin Richards IV</a>
         </small>
       </p>
