@@ -2,22 +2,22 @@
   <section class="hero is-primary">
     <div class="hero-body">
       <div class="container">
-        <div class="columns">
-          <div class="column is-half">
-            <h1 class="title">Barista Memory Training</h1>
-            <h2 class="subtitle">Know your customers. Know their order.</h2>
-          </div>
-          <div class="column"></div>
-          <div class="column">
+        <div class="columns is-mobile">
+          <div class="column is-one-quarter">
             <div class="row cup espresso">
               <div class="pour_bottom"></div>
             </div>
           </div>
-        </div>
-        
-        <div id="nav">
-          <router-link to="/">Play Game</router-link> |
-          <router-link to="/about">Info</router-link>
+          <div class="column has-text-centered">
+            <h1 class="title">Barista Memory Training</h1>
+            <h2 class="subtitle">Know your customers. Know their order.</h2>
+          </div>
+          <div class="column is-one-quarter has-text-right">
+            <div id="nav">
+              <router-link to="/">Play Game</router-link> |
+              <router-link to="/about">Info</router-link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -28,6 +28,7 @@
 <style lang="scss">
   
   .row{
+    margin-right: 1em;
     position: relative;
     float: right;
     &:before,
@@ -37,7 +38,7 @@
     }
   }
   .cup {
-    margin: 20px;
+    margin-right: 2rem;
     float: left;
     width: 95px;
     height: 75px;

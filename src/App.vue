@@ -3,16 +3,15 @@
     <Header />
     <router-view/>
 
-    <section v-if="people_api_error">
+    <section class="game-table" v-if="people_api_error">
       <ApiError />
       <Cards v-bind:deckOfCards="deckOfCards" /> 
     </section>
 
-    <section v-else>
+    <section class="game-table" v-else>
       <div v-if="people_api_loading">
-      Loading data...
-      <div class="loading"></div>
-    </div>
+        Loading data...
+      </div>
       <People 
         v-on:reset-people="createDeckOfPeople" 
         v-bind:deckOfPeople="deckOfPeople" 
@@ -271,4 +270,10 @@ function initCardDeck() {
 <!-- Bulma / Buefy Styles -->
 <style lang="scss">
   @import "./sass/all";
+  .game-table{
+    padding: 1em;
+  }
+  .hero-body{
+    padding: 2rem;
+  }
 </style>
