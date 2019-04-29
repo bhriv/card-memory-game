@@ -21,6 +21,9 @@ export default new Vuex.Store({
       ]
   },
   mutations: {
+    resetGameCount (state) {
+      state.count = 0
+    },
     incrementGameCount (state) {
       state.count++
       if (state.count > 2){

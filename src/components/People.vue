@@ -3,7 +3,8 @@
     
     <div class="columns">
       <div class="column is-full">
-        <b-button @click="$emit('reset-deck')">Reset Deck</b-button> 
+        <b-button @click="$emit('new-deck')">Start Over</b-button> 
+        <b-button @click="$emit('reset-deck')">Redeal</b-button> 
         <span class="column is-pulled-right">
           <span><strong>{{ counter_title }}:</strong> {{ count }}</span>
         </span>
@@ -58,7 +59,6 @@ export default {
 
 <style lang="scss" scoped>
 
-
   #top_controls{
     margin-bottom: 1em;
   }
@@ -66,7 +66,9 @@ export default {
     flex-wrap: wrap;
   }
 
-  
+  button{
+    margin-right: 0.1rem;
+  }
     
   .card-size-small.is-mobile > .column.is-one-quarter{
     width: 16.66%;

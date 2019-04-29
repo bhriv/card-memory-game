@@ -13,6 +13,7 @@
         Loading data...
       </div>
       <People 
+        v-on:new-deck="newDeck" 
         v-on:reset-deck="resetDeck" 
         v-bind:deckOfPeople="deckOfPeople" 
         @pick-card="pickCard"
@@ -74,6 +75,15 @@ export default {
     this.gameStart()
   },
   methods: {
+    newDeck: function () {
+      // New game stared. User can read instructions prior to starting timer
+      console.info('New deck');
+      this.deckOfPeople = null
+      store.commit('resetGameCount')
+      store.commit('incrementGameCount')
+      this.createDeckOfPeople()
+      // deck_audio.play();
+    },
     gameStart: function () {
       // New game stared. User can read instructions prior to starting timer
       console.info('Game started');
@@ -159,7 +169,7 @@ export default {
       if (store.state.count > 2) {
         multiplier = Math.pow(store.state.count,2)
       }
-      
+
       console.log('multiplier: '+multiplier)
       axios
         // .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*store.state.count+'&nat=us')
