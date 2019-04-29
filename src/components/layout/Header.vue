@@ -76,16 +76,15 @@
     background: #1d1d1d;
   }
 
-  $val: 20px;
-
-  .pour_bottom:after {
-    bottom: 10px;
-    border-radius:  0px 0px 42px 42px;
-    background: rgba(0, 0, 0, 0);
-    animation: fill 8s ease-in 0s normal 1 forwards running;
-    // left: calc(50% - $val);
-    // border-bottom: $val solid #8B4C39;
-  }
+  // @TODO - Improve cup later
+  // .pour_bottom:after {
+  //   bottom: 10px;
+  //   border-radius:  0px 0px 42px 42px;
+  //   background: rgba(0, 0, 0, 0);
+  //   animation: fill 8s ease-in 0s normal 1 forwards running;
+  //   // left: calc(50% - $val);
+  //   // border-bottom: $val solid #8B4C39;
+  // }
 
   // .cup.latte{
   //   height: 100px;
@@ -96,82 +95,6 @@
   //   }
   // }
 
-  // $latte: 30px;
-  // @keyframes latte {
-  //   0% {
-  //     height: 10px;
-  //     width: 60px;
-  //     left: 20px;
-  //     border-radius: 1px 1px 60px 60px;
-  //   }
-  //   25% {
-  //     height: 20px;
-  //     width: 70px;
-  //     left: 15px;
-  //     border-radius: 1px 1px 50px 50px;
-  //   }
-  //   50% {
-  //     height: 30px;
-  //     width: 80px;
-  //     left: 8px;
-  //     border-radius: 1px 1px 40px 40px;
-  //   }
-  //   100% {
-  //     height: 100px;
-  //     width: 87px;
-  //     left: 4px;
-  //     border-radius: 1px 1px 40px 40px;
-  //   }
-  // }
-
-  $espresso: 30px;
-  @keyframes espresso {
-    0% {
-      height: 10px;
-      width: 60px;
-      left: 20px;
-      border-radius: 1px 1px 60px 60px;
-    }
-    25% {
-      height: 20px;
-      width: 70px;
-      left: 15px;
-      border-radius: 1px 1px 50px 50px;
-    }
-    50% {
-      height: 30px;
-      width: 80px;
-      left: 8px;
-      border-radius: 1px 1px 40px 40px;
-    }
-    100% {
-      height: 40px;
-      width: 87px;
-      left: 4px;
-      border-radius: 1px 1px 40px 40px;
-    }
-  }
-
-  @keyframes fill {
-    0% {
-      $val: 20px;
-      width: $val;
-      left: calc(50% - $val);
-      border-bottom: $val solid #8B4C39;
-    }
-    50% {
-      $val: 50px;
-      width: $val;
-      left: calc(50% - $val);
-      border-bottom: $val solid #8B4C39;
-    }
-    100% {
-      $val: 100px;
-      width: $val;
-      left: calc(50% - $val);
-      border-bottom: $val solid #8B4C39;
-    }
-  }
 </style>
 
 <script>
