@@ -1,8 +1,14 @@
 <template>
   <div id="page-people" class="container">
     <p id="top_controls">
-      <b-button @click="$emit('reset-people')">Reset Deck</b-button> 
-      <span><strong>{{ counter_title }}:</strong> {{ count }}</span>
+      <div class="columns">
+        <div class="column is-one-column">
+          <b-button @click="$emit('reset-people')">Reset Deck</b-button> 
+        </div>
+        <div class="column has-text-right">
+          <span><strong>{{ counter_title }}:</strong> {{ count }}</span>
+        </div>
+      </div>
     </p>
       <div class="columns is-mobile">
         <div v-bind:key="person.id" v-for="person in deckOfPeople" class="column is-one-quarter">
