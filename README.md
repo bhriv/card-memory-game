@@ -7,26 +7,26 @@ See [Web Dev Test](https://github.com/piotrbulinski/webdev-task) for more inform
 
 ### Web Test Rules
 ---------------------
--   You can use any code resource you like but please cite your sources
--   For each game pull new assets
--   After each game report results and display returned message on the screen
+-   You can use any code resource you like but please cite your sources. (@bhriv : Coffee cup animation with reference to this [Code Pen](https://codepen.io/LauraRobertson/pen/OpOjxB))
+-   For each game pull new assets (@bhriv : I used randomuser.me to generate assets as the provided API is no longer active)
+-   After each game report results and display returned message on the screen (@bhriv : API is no longer active but is set to Post results if reactivated. I played around with setting up an API to capture results and register users, but this was overkill for this test)
 
 
 ### Deliverables
 ---------------------
 - [x] Provide a README with a brief overview of your project and any other important information
-- [ ] Fully functional mobile site
+- [x] Fully functional mobile site
 
 #### Extra Credit
 ---------------------
 -   Bonus points will be awarded for
-    [ ]   engaging interactivity
-    [ ]   clever use of animations / transforms / sounds / etc...
-    [ ]   including a build script
-    [ ]   responsive design / enhanced tablet functionality
-    [ ]  binding UI elements to a data model or external dynamic feed
-    [ ]  minimal use of images
-    [ ]  creativity
+    [x]   engaging interactivity
+    [x]   clever use of animations / transforms / sounds / etc...
+    [x]   including a build script
+    [x]   responsive design / enhanced tablet functionality
+    [x]  binding UI elements to a data model or external dynamic feed
+    [x]  minimal use of images
+    [x]  creativity
 
 
 ## Project setup
