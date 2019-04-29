@@ -6,7 +6,7 @@
     </p>
       <div class="columns is-mobile">
         <div v-bind:key="person.id" v-for="person in deckOfPeople" class="column is-one-quarter">
-          <PersonItem v-bind:person="person" @pick-card="$emit('pick-card',person.id)"/>
+          <PersonItem v-bind:person="person" @pick-card="$emit('pick-card',person)"/>
         </div>
       </div>
   </div>

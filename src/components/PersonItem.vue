@@ -7,9 +7,9 @@
     
     <div v-if="person.selected || person.matched">
       <span>
-        <img :src="person.thumbnail">
-        <h4>{{ person.name }}</h4>
+        <!-- <h4>{{ person.name }}</h4> -->
         <h4>{{ person.coffee }}</h4>
+          <img :src="person.thumbnail">
       </span>
     </div>  
     
@@ -18,8 +18,11 @@
 
 
 <style lang="scss" scoped>
+  
   h4{
     text-transform: capitalize;
+    margin-bottom: 1em;
+    font-weight: 600;
   }
   @keyframes rotate {
     from {
@@ -71,6 +74,8 @@
 
 <script>
 
+import {_} from 'vue-underscore';
+
 export default {
   name: "PersonItem",
   props: ["person","isSwitchedCustom"],
@@ -78,7 +83,11 @@ export default {
     pickCard() {
       // toggle boolean for the person.selected value
       this.person.selected = !this.person.selected;
-      this.$emit('pick-card',this.person.id)
+      // console.log(this.deckOfPeople)
+      // let twins = _.where(this.deckOfPeople,{title: this.person.title})
+      // console.log(twins)
+
+      this.$emit('pick-card',this.person)
       var audio = new Audio('http://bhriv.com/sites/tectonic/game/audio/card-filp.mp3');
       audio.play();
     }

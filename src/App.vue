@@ -94,11 +94,19 @@ export default {
       console.info('Game ended');
       success_audio.play();
       store.commit('incrementPairsCount')
-      this.$dialog.confirm({
-        title: 'You Did It!',
-        message: 'Ready for the next level?',
-        onConfirm: () => this.gameStart()
+      
+      this.$toast.open({
+          message: 'Nice Job. Here\'s the next level ',
+          type: 'is-success',
+          position: 'is-bottom',
+          duration: 3000
       })
+      this.gameStart()   
+      // this.$dialog.confirm({
+      //   title: 'You Did It!',
+      //   message: 'Ready for the next level?',
+      //   onConfirm: () => this.gameStart()
+      // })
     },
     gameTimeout: function () {
       // @TODO - possibly have a setting for max time each game
@@ -108,10 +116,17 @@ export default {
       // @TODO - possibly have a setting for max wrong answers
       console.info('Game fail - too many wrong answers');
     },
-    pickCard: function (){
-      console.log('App.vue pickCard fired')
+    pickCard: function (person){
+      console.log('App.vue pickCard fired for person ID: ',person)
       let choices = _.where(this.deckOfPeople,{selected: true})
-      if(choices.length == 2) this.checkSelections(choices)
+
+      if(choices.length == 2){
+        this.checkSelections(choices)
+      }else{
+        let twin = _.where(this.deckOfPeople,{title: person.title})
+        twin = _.find(twin,{selected: false})
+        console.log('twin',twin)
+      }
     },
     checkSelections: function (choices) {
       console.log('fired checkSelectedCards',choices);
@@ -125,18 +140,19 @@ export default {
         }else{
           setTimeout(function () {
             deck_deal.play();
-          }, 1950)
+          }, 1450)
         }
+        
         setTimeout(function () {
           choices[0].selected = false
           choices[1].selected = false
-        }, 2000)
+        }, 1500)
       }
       if (_.find(this.deckOfPeople,{matched: false}) ) {
         console.log('keep going') 
       }else{
         console.log('Game Over !****')
-        this.gameEnded()
+        setTimeout(this.gameEnded, 1000)
       }
     },
     createDeckOfPeople: function () {
