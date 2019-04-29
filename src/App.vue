@@ -45,7 +45,7 @@ deck_deal.preload;
 const success_audio = new Audio('http://bhriv.com/sites/tectonic/game/audio/success.mp3');
 success_audio.preload;
 
-
+const results_api_base = 'http://bhriv.com/sites/tectonic/wp-json/';
 // App 
 export default {
   name:"app",
