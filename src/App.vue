@@ -155,9 +155,15 @@ export default {
     },
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
+      let multiplier = store.state.count
+      if (store.state.count > 2) {
+        multiplier = Math.pow(store.state.count,2)
+      }
+      
+      console.log('multiplier: '+multiplier)
       axios
         // .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*store.state.count+'&nat=us')
-        .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*store.state.count+'&nat=us')
+        .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*multiplier)
         // .get('https://evtask.t12y.net/assets')
         .then(response => {
           // People Data from API
@@ -206,7 +212,7 @@ export default {
           
           // Play should effect if ready
           var playSoundEffect = deck_deal.play();
-          
+
           if (playSoundEffect !== undefined) {
             playSoundEffect.then(_ => {
               console.log('playSoundEffect play started')

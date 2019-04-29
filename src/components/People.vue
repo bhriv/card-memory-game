@@ -81,7 +81,7 @@ export default {
   }
 
   .card-size-tiny.is-mobile > .column.is-one-quarter{
-    width: 12.5%;
+    width: 16.66%;
     margin: 0;
     padding: 0.44%;
     

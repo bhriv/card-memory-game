@@ -13,7 +13,12 @@ export default new Vuex.Store({
     card_small: false,
     card_tiny: false,
     card_minature: false,
-    coffee: ["espresso","double espresso","latte","flat white","long black","cafe latte","piccolo latte","cappuccino","americano","macchiato","mochaccino","ristretto","long macchiato","affogato"]
+    coffee: [
+      "espresso","double espresso","latte","flat white","long black","cafe latte","piccolo latte","cappuccino","americano","macchiato","mochaccino","ristretto","long macchiato","affogato",
+      "soy latte","soy flat white","soy cafe latte","soy piccolo latte","soy cappuccino",
+      "almond latte","almond flat white","almond cafe latte","almond piccolo latte","almond cappuccino",
+      "decaf latte","decaf flat white","decaf cafe latte","decaf piccolo latte","decaf cappuccino",
+      ]
   },
   mutations: {
     incrementGameCount (state) {
