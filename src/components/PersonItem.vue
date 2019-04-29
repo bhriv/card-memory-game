@@ -21,12 +21,20 @@
   img{
     width: 50%;
   }
+
+  // if counter = 3
+  // .columns.is-mobile > .column.is-one-quarter{
+  //   width: 12.5%;
+  //   img{
+  //     width: 75%;
+  //   }
+  // }
+  
   h4{
     text-transform: capitalize;
     margin-bottom: 1em;
     font-weight: 600;
   }
-  
   
   .box{
     height: 200px;

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:class="appClass.level">
+  <div id="app">
     <Header />
     <router-view/>
 
@@ -62,10 +62,7 @@ export default {
       people_api_error_msg: null,
       people_api_loading: true,
       pairs_to_match: store.state.pairs,
-      radio: "Jack",
-      appClass: {
-        level: 'counter-'+store.state.count
-      }
+      radio: "Jack"
     }
   },
   created() {
@@ -206,7 +203,20 @@ export default {
           }
 
           this.deckOfPeople = _.shuffle(memoryData);
-          deck_deal.play()
+          
+          // Play should effect if ready
+          var playSoundEffect = deck_deal.play();
+          
+          if (playSoundEffect !== undefined) {
+            playSoundEffect.then(_ => {
+              console.log('playSoundEffect play started')
+            })
+            .catch(error => {
+              console.log('playSoundEffect not ready',error)
+            });
+          }
+
+          // deck_deal.play()
           console.log('deck of People with memoryData',memoryData)
           // Shuffle Deck
           
@@ -222,11 +232,15 @@ export default {
   watch: {
     deckOfPeople: function(newValue, oldValue) {
       console.log('deckOfPeople: Watch fired')
-    }
+      store.commit('incrementAppClass')
+    },
   },
 }
 
-
+function updateAppClass() {
+  let level = store.state.count+1
+  return 'level-'+level
+}
 
 // FUNCTIONS OUTSIDE OF APP - TO PERSIST DATA MODEL
 // Used to reset the data to resart the game
