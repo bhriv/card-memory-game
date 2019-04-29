@@ -8,8 +8,8 @@
     <div v-if="person.selected || person.matched">
       <span>
         <!-- <h4>{{ person.name }}</h4> -->
-        <h4>{{ person.coffee }}</h4>
           <img :src="person.thumbnail">
+          <h4>{{ person.coffee }}</h4>
       </span>
     </div>  
     
@@ -18,34 +18,19 @@
 
 
 <style lang="scss" scoped>
-  
+  img{
+    width: 50%;
+  }
   h4{
     text-transform: capitalize;
     margin-bottom: 1em;
     font-weight: 600;
   }
-  @keyframes rotate {
-    from {
-      transform: rotateY(0deg); 
-    }
-    to {
-      transform: rotateY(180deg);
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0.8;
-      width: 0;
-    }
-    to {
-      opacity: 1;
-      width: initial;
-    }
-  }
+  
   
   .box{
-    min-height: 200px;
+    height: 200px;
+    padding: 1rem 0 0;
     backface-visibility: hidden; 
     text-align: center;
     img{
@@ -67,6 +52,26 @@
       backface-visibility: visible; 
       img{
         visibility: visible;
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotateY(0deg); 
+      }
+      to {
+        transform: rotateY(180deg);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0.8;
+        width: 0;
+      }
+      to {
+        opacity: 1;
+        width: initial;
       }
     }
   }

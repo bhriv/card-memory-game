@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:class="appClass.level">
     <Header />
     <router-view/>
 
@@ -62,7 +62,10 @@ export default {
       people_api_error_msg: null,
       people_api_loading: true,
       pairs_to_match: store.state.pairs,
-      radio: "Jack"
+      radio: "Jack",
+      appClass: {
+        level: 'counter-'+store.state.count
+      }
     }
   },
   created() {
@@ -156,6 +159,7 @@ export default {
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
       axios
+        // .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*store.state.count+'&nat=us')
         .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*store.state.count+'&nat=us')
         // .get('https://evtask.t12y.net/assets')
         .then(response => {

@@ -1,7 +1,7 @@
 <template>
   <div id="page-people" class="container">
     <p id="top_controls">
-      <div class="columns">
+      <div class="columns is-vcentered">
         <div class="column is-one-column">
           <b-button @click="$emit('reset-deck')">Reset Deck</b-button> 
         </div>
@@ -48,16 +48,14 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
 <style lang="scss" scoped>
-#top_controls{
-  margin-bottom: 1em;
-  span{
-    padding: 1rem;
+  #top_controls{
+    margin-bottom: 1em;
+    span{
+      padding: 1rem;
+    }
   }
-}
-.columns{
-  flex-wrap: wrap;
-}
+  .columns{
+    flex-wrap: wrap;
+  }
 </style>
