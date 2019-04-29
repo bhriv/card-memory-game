@@ -3,7 +3,7 @@
     <p id="top_controls">
       <div class="columns">
         <div class="column is-one-column">
-          <b-button @click="$emit('reset-people')">Reset Deck</b-button> 
+          <b-button @click="$emit('reset-deck')">Reset Deck</b-button> 
         </div>
         <div class="column has-text-right">
           <span><strong>{{ counter_title }}:</strong> {{ count }}</span>

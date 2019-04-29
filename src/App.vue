@@ -13,7 +13,7 @@
         Loading data...
       </div>
       <People 
-        v-on:reset-people="createDeckOfPeople" 
+        v-on:reset-deck="resetDeck" 
         v-bind:deckOfPeople="deckOfPeople" 
         @pick-card="pickCard"
       /> 
@@ -73,18 +73,11 @@ export default {
     console.log('App mounted now');
     this.gameStart()
   },
-  // computed: {
-  //   switchMode: function(){
-  //     console.log('switchMode')
-  //     // this.$emit('pick-card',this.person.id)
-  //   }
-  // },
   methods: {
     gameStart: function () {
       // New game stared. User can read instructions prior to starting timer
       console.info('Game started');
       store.commit('incrementGameCount')
-      // console.log(this.deckOfCards);
       this.createDeckOfPeople()
       // deck_audio.play();
     },
@@ -101,11 +94,6 @@ export default {
           duration: 3000
       })
       this.gameStart()   
-      // this.$dialog.confirm({
-      //   title: 'You Did It!',
-      //   message: 'Ready for the next level?',
-      //   onConfirm: () => this.gameStart()
-      // })
     },
     gameTimeout: function () {
       // @TODO - possibly have a setting for max time each game
@@ -114,6 +102,17 @@ export default {
     gameFail: function () {
       // @TODO - possibly have a setting for max wrong answers
       console.info('Game fail - too many wrong answers');
+    },
+    resetDeck: function (){
+      console.log('resetDeck')
+      let newDeck = this.deckOfPeople;
+      for (var i = 0; i < newDeck.length; i++) {
+        newDeck[i].selected = false
+        newDeck[i].matched = false
+        newDeck[i].disabled = 0
+      }
+      deck_deal.play();
+      this.deckOfPeople = _.shuffle(newDeck);
     },
     pickCard: function (person){
       console.log('App.vue pickCard fired for person ID: ',person)
@@ -219,8 +218,6 @@ export default {
   watch: {
     deckOfPeople: function(newValue, oldValue) {
       console.log('deckOfPeople: Watch fired')
-      // console.log('PREV deckOfCards: ',oldValue)
-      // console.log('UPDATED deckOfCards: ',newValue)
     }
   },
 }

@@ -64,7 +64,7 @@
     // height: 30px;
     // width: 87px;
     border-radius: 1px 1px 40px 40px;
-    animation: espresso 4s ease-in 0s normal 1 forwards running;
+    animation: espresso 8s ease-in 0s normal 1 forwards running;
     // animation: rotate 10s ease-out;
   }
 
@@ -82,7 +82,7 @@
     bottom: 10px;
     border-radius:  0px 0px 42px 42px;
     background: rgba(0, 0, 0, 0);
-    animation: fill 6s ease-in 0s normal 1 forwards running;
+    animation: fill 8s ease-in 0s normal 1 forwards running;
     // left: calc(50% - $val);
     // border-bottom: $val solid #8B4C39;
   }
