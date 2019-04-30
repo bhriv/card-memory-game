@@ -2,26 +2,14 @@
   <div id="app">
     <Header />
     <router-view/>
-    <div class="portrait-notification">
-      <b-notification
-          type="is-danger"
-          aria-close-label="Close notification"
-          role="alert">
-          Please rotate your device to landscape mode to enjoy the game.
-      </b-notification>
-    </div>
+    <Notifications /> 
+
     <section class="game-table" v-if="people_api_error">
       <ApiError />
       <Cards v-bind:deckOfCards="deckOfCards" /> 
     </section>
 
     <section class="game-table" v-else>
-      <div v-if="people_api_loading">
-        <b-notification aria-close-label="Close notification" role="alert">
-          Loading Data
-        </b-notification>
-        
-      </div>
       <People 
         v-on:post-results="postResults" 
         v-on:new-deck="newDeck" 
@@ -39,6 +27,7 @@
 
 // Components
 import Header from './components/layout/Header';
+import Notifications from './components/layout/Notifications';
 import Footer from './components/layout/Footer';
 import Cards from './components/Cards';
 import People from './components/People';
@@ -62,6 +51,7 @@ export default {
   name:"app",
   components: {
     Header,
+    Notifications,
     Footer,
     Cards,
     People,
@@ -73,7 +63,6 @@ export default {
       deckOfPeople: null,
       people_api_error: false,
       people_api_error_msg: null,
-      people_api_loading: true,
       pairs_to_match: store.state.pairs,
       radio: "Jack"
     }
@@ -207,6 +196,7 @@ export default {
     },
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
+      store.commit('apiLoadingError')
       let multiplier = store.state.count
       // if (store.state.count > 3) {
       //   multiplier = Math.pow(store.state.count,2)
@@ -279,9 +269,9 @@ export default {
               show_image: true
             }
           }
-
-          this.deckOfPeople = memoryData
-          // this.deckOfPeople = _.shuffle(memoryData);
+          store.commit('apiLoadingError',false)
+          // this.deckOfPeople = memoryData
+          this.deckOfPeople = _.shuffle(memoryData);
           
           // Play should effect if ready
           var playSoundEffect = deck_deal.play();
@@ -304,8 +294,10 @@ export default {
           console.log(error)
           this.people_api_error = true
           this.people_api_error_msg = error
+          store.commit('apiLoadingError',false)
         })
-        .finally(() => setTimeout(this.people_api_loading = false, 1000) )
+        .finally(() => console.log('Hide Notification'))
+        // setTimeout(this.api_loading = false, 1000) 
     }
   },
   watch: {
