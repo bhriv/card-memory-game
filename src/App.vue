@@ -5,16 +5,18 @@
     <Notifications /> 
 
     <!-- <Cards v-bind:deckOfCards="deckOfCards" />  -->
+    <div v-if="!apiLoadingInProgress" class="game-table">
 
-    <section class="game-table">
-      <People 
-        v-on:post-results="postResults" 
-        v-on:new-deck="newDeck" 
-        v-on:reset-deck="resetDeck" 
-        v-bind:deckOfPeople="deckOfPeople" 
-        @pick-card="pickCard"
-      /> 
-    </section>
+        <People 
+          v-on:post-results="postResults" 
+          v-on:new-deck="newDeck" 
+          v-on:reset-deck="resetDeck" 
+          v-bind:deckOfPeople="deckOfPeople" 
+          @pick-card="pickCard"
+        /> 
+      
+    </div>
+    
 
     <Footer />
   </div>
@@ -67,6 +69,11 @@ export default {
   mounted () {
     console.log('App mounted now');
     this.gameStart()
+  },
+  computed: { // retrieve current data state 
+    apiLoadingInProgress () { // is computation is called by {{ count }} in the template
+      return store.state.api_loading_in_progress
+    },
   },
   methods: {
     postResults: function () {
