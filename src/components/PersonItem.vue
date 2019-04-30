@@ -4,12 +4,16 @@
     v-bind:class="{'is-selected':person.selected, 'is-disabled':person.disabled, 'is-matched':person.matched }"
     @click="pickCard" 
   >
+    <!-- {{person.is_first_deck}} -->
     
     <div v-if="person.selected || person.matched">
       <span>
         <!-- <h4>{{ person.name }}</h4> -->
-          <img :src="person.thumbnail">
+          <!-- show image: {{person.show_image}}   -->
           <h4>{{ person.coffee }}</h4>
+          <div v-if="person.show_image">  
+            <img :src="person.thumbnail">
+          </div>
       </span>
     </div>  
     
@@ -29,7 +33,7 @@
   //     width: 75%;
   //   }
   // }
-  
+
   h4{
     text-transform: capitalize;
     margin-bottom: 1em;
@@ -91,7 +95,7 @@ import {_} from 'vue-underscore';
 
 export default {
   name: "PersonItem",
-  props: ["person","isSwitchedCustom"],
+  props: ["person"],
   methods: {
     pickCard() {
       // toggle boolean for the person.selected value

@@ -170,6 +170,7 @@ export default {
         let twin = _.where(this.deckOfPeople,{title: person.title})
         twin = _.find(twin,{selected: false})
         console.log('twin',twin)
+        twin.show_image = false
       }
     },
     checkSelections: function (choices) {
@@ -181,6 +182,11 @@ export default {
           choices[0].disabled = 1
           choices[1].matched = true
           choices[1].disabled = 1
+          setTimeout(function () {
+            choices[0].show_image = true
+            choices[1].show_image = true
+          }, 1000)
+          
         }else{
           setTimeout(function () {
             deck_deal.play();
@@ -215,13 +221,31 @@ export default {
           let peopleData = response.data.results
           // Generate random coffee orders
           let coffeeData = _.first(_.shuffle(store.state.coffee),peopleData.length)
-          
+          coffeeData = coffeeData.concat(coffeeData);
           // Create Double Stack Deck
           peopleData = peopleData.concat(peopleData);
-          coffeeData = coffeeData.concat(coffeeData);
+          console.log('peopleData.length/2',peopleData.length/2)
+
+          // for (var a = 0; a < peopleData.length/2; a++) {
+          //   console.log('first deck',peopleData)
+          //   peopleData[a].is_first_deck = true
+          // }
+
+          // for (var b = peopleData.length/2; b < peopleData.length; i++) {
+          //   console.log('second deck')
+          //   peopleData[b].is_first_deck = false
+          // }
+          
           // console.log('peopleData concat',peopleData)
           // Add data
+          
+
           for (var i = 0; i < peopleData.length; i++) {
+            let is_first_deck = false
+            if (i < peopleData.length/2) {
+              is_first_deck = true
+            }
+
             peopleData[i] = {
               id: i,
               coffee: coffeeData[i],
@@ -231,7 +255,8 @@ export default {
               selected: false,
               matched: false,
               disabled: false,
-
+              is_first_deck: is_first_deck,
+              show_image: true
             }
           }
           
@@ -249,11 +274,14 @@ export default {
               coffee: coffeeData[j],
               selected: false,
               matched: false,
-              disabled: false
+              disabled: false,
+              is_first_deck: peopleData[j].is_first_deck,
+              show_image: true
             }
           }
 
-          this.deckOfPeople = _.shuffle(memoryData);
+          this.deckOfPeople = memoryData
+          // this.deckOfPeople = _.shuffle(memoryData);
           
           // Play should effect if ready
           var playSoundEffect = deck_deal.play();
