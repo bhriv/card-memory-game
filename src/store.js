@@ -10,7 +10,7 @@ export default new Vuex.Store({
     app_class: null,
     mistakes: 0,
     pairs: 2,
-    api_loading_error: false,
+    api_loading_in_progress: false,
     card_small: false,
     card_tiny: false,
     card_minature: false,
@@ -43,9 +43,9 @@ export default new Vuex.Store({
     incrementAppClass(state) {
       return 'applevel-'+state.count
     },
-    apiLoadingError(state,hasError) {
-      console.log('apiLoadingError called in Store')
-      return state.api_loading_error = hasError
+    apiLoadingInProgress(state,hasError) {
+      console.log('apiLoadingInProgress called in Store')
+      return state.api_loading_in_progress = hasError
     },
   },
   actions: {

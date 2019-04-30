@@ -4,9 +4,10 @@
     <router-view/>
     <Notifications /> 
 
+    <Cards v-bind:deckOfCards="deckOfCards" /> 
+
     <section class="game-table" v-if="people_api_error">
       <ApiError />
-      <Cards v-bind:deckOfCards="deckOfCards" /> 
     </section>
 
     <section class="game-table" v-else>
@@ -196,7 +197,7 @@ export default {
     },
     createDeckOfPeople: function () {
       console.log('createDeckOfPeople')
-      store.commit('apiLoadingError')
+      store.commit('apiLoadingInProgress',true)
       let multiplier = store.state.count
       // if (store.state.count > 3) {
       //   multiplier = Math.pow(store.state.count,2)
@@ -269,7 +270,7 @@ export default {
               show_image: true
             }
           }
-          store.commit('apiLoadingError',false)
+          store.commit('apiLoadingInProgress',false)
           // this.deckOfPeople = memoryData
           this.deckOfPeople = _.shuffle(memoryData);
           
@@ -294,7 +295,7 @@ export default {
           console.log(error)
           this.people_api_error = true
           this.people_api_error_msg = error
-          store.commit('apiLoadingError',false)
+          store.commit('apiLoadingInProgress',false)
         })
         .finally(() => console.log('Hide Notification'))
         // setTimeout(this.api_loading = false, 1000) 
