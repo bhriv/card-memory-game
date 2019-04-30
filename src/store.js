@@ -11,6 +11,7 @@ export default new Vuex.Store({
     mistakes: 0,
     pairs: 2,
     api_loading_in_progress: false,
+    api_loading_error: false,
     card_small: false,
     card_tiny: false,
     card_minature: false,
@@ -46,6 +47,10 @@ export default new Vuex.Store({
     apiLoadingInProgress(state,hasError) {
       console.log('apiLoadingInProgress called in Store')
       return state.api_loading_in_progress = hasError
+    },
+    apiLoadingError(state,hasError) {
+      console.log('apiLoadingError called in Store')
+      return state.api_loading_error = hasError
     },
   },
   actions: {

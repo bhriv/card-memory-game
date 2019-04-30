@@ -8,9 +8,16 @@
           Please rotate your device to landscape mode to enjoy the game.
       </b-notification>
     </div>
-    <div v-if="getApiLoadingError">
+
+    <div v-if="apiLoadingInProgress">
       <b-notification aria-close-label="Close notification" role="alert">
         Loading Data
+      </b-notification>
+    </div>
+
+    <div v-if="getApiLoadingError">
+      <b-notification type="is-danger" aria-close-label="Close notification" role="alert">
+        <strong>API Error</strong>: Check your internet connection and reload the page.</span>
       </b-notification>
     </div>
   </section>
@@ -26,15 +33,14 @@ import store from '@/store';
 export default {
   name: "Notifications",
   methods: {
-    // testNotice: function(){
-    //   console.log('api_loading_error: ')
-    //   // console.log('api_loading: '+store.state.api_loading)
-    // }
   },
   mounted () {
     console.log('Notifications mounted now');
   },
   computed: { // retrieve current data state 
+    apiLoadingInProgress () { // is computation is called by {{ count }} in the template
+      return store.state.api_loading_in_progress
+    },
     getApiLoadingError () { // is computation is called by {{ count }} in the template
       return store.state.api_loading_error
     },

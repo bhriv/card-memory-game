@@ -4,13 +4,9 @@
     <router-view/>
     <Notifications /> 
 
-    <Cards v-bind:deckOfCards="deckOfCards" /> 
+    <!-- <Cards v-bind:deckOfCards="deckOfCards" />  -->
 
-    <section class="game-table" v-if="people_api_error">
-      <ApiError />
-    </section>
-
-    <section class="game-table" v-else>
+    <section class="game-table">
       <People 
         v-on:post-results="postResults" 
         v-on:new-deck="newDeck" 
@@ -32,7 +28,6 @@ import Notifications from './components/layout/Notifications';
 import Footer from './components/layout/Footer';
 import Cards from './components/Cards';
 import People from './components/People';
-import ApiError from './components/layout/ApiError';
 import store from './store';
 
 // Vendor
@@ -55,15 +50,12 @@ export default {
     Notifications,
     Footer,
     Cards,
-    People,
-    ApiError
+    People
   },
   data() {
     return {
       deckOfCards: initCardDeck(),
       deckOfPeople: null,
-      people_api_error: false,
-      people_api_error_msg: null,
       pairs_to_match: store.state.pairs,
       radio: "Jack"
     }
@@ -293,11 +285,9 @@ export default {
         })
         .catch(error => {
           console.log(error)
-          this.people_api_error = true
-          this.people_api_error_msg = error
-          store.commit('apiLoadingInProgress',false)
+          store.commit('apiLoadingError',true)
         })
-        .finally(() => console.log('Hide Notification'))
+        .finally(() => store.commit('apiLoadingInProgress',false))
         // setTimeout(this.api_loading = false, 1000) 
     }
   },
