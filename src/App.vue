@@ -212,29 +212,13 @@ export default {
           // Generate random coffee orders
           let coffeeData = _.first(_.shuffle(store.state.coffee),peopleData.length)
           coffeeData = coffeeData.concat(coffeeData);
+          
           // Create Double Stack Deck
           peopleData = peopleData.concat(peopleData);
-          console.log('peopleData.length/2',peopleData.length/2)
-
-          // for (var a = 0; a < peopleData.length/2; a++) {
-          //   console.log('first deck',peopleData)
-          //   peopleData[a].is_first_deck = true
-          // }
-
-          // for (var b = peopleData.length/2; b < peopleData.length; i++) {
-          //   console.log('second deck')
-          //   peopleData[b].is_first_deck = false
-          // }
           
-          // console.log('peopleData concat',peopleData)
-          // Add data
-          
-
           for (var i = 0; i < peopleData.length; i++) {
-            let is_first_deck = false
-            if (i < peopleData.length/2) {
-              is_first_deck = true
-            }
+            // Track which deck for possible future features
+            let is_first_deck = i < peopleData.length/2 ? true : false
 
             peopleData[i] = {
               id: i,
@@ -242,11 +226,7 @@ export default {
               title: peopleData[i].name.first+'-'+peopleData[i].name.last,
               name: peopleData[i].name.first+' '+peopleData[i].name.last,
               thumbnail: peopleData[i].picture.medium,
-              selected: false,
-              matched: false,
-              disabled: false,
               is_first_deck: is_first_deck,
-              show_image: true
             }
           }
           
@@ -262,10 +242,11 @@ export default {
               coffee: peopleData[j].coffee, 
               thumbnail: peopleData[j].thumbnail, 
               coffee: coffeeData[j],
+              is_first_deck: peopleData[j].is_first_deck,
+
               selected: false,
               matched: false,
               disabled: false,
-              is_first_deck: peopleData[j].is_first_deck,
               show_image: true
             }
           }
