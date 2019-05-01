@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     clicks: 1,
+    data_category: 'coffee',
     counter_title: 'Level',
     count: 0,
     app_class: null,
@@ -53,17 +54,25 @@ export default new Vuex.Store({
       console.log('apiLoadingError called in Store')
       return state.api_loading_error = hasError
     },
-    increment(state,multiplier) {
-      console.log('## mutations increment called in Store: multiplier: '+multiplier)
-      return state.clicks = state.clicks*multiplier
+    increment(state,payload) {
+      console.log('## mutations increment called in Store: payload: '+payload)
+      return state.clicks = state.clicks*payload
+    },
+    getDataOfType(state,payload) {
+      console.log('## mutations getDataOfType called in Store: payload: '+payload)
+      return state.data_category = payload
     },
     // checkCardSelections()
   },
   actions: {
     // call actions > increment using store.dispatch('increment')
-    increment (context,multiplier) {
+    increment (context,payload) {
       // this fires mutations > increment
-      context.commit('increment',multiplier)
+      context.commit('increment',payload)
+    },
+    getDataOfType (context,payload) {
+      // this fires mutations > increment
+      context.commit('getDataOfType',payload)
     }
   
   }

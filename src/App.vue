@@ -68,9 +68,9 @@ export default {
   },
   mounted () {
     console.log('App mounted now');
-    store.dispatch('increment',2)
+    // store.dispatch('increment',2)
     // console.log('store.state.clicks = '+store.state.clicks)
-    this.gameStart()
+    // this.gameStart()
   },
   computed: { // retrieve current data state 
     apiLoadingInProgress () { // is computation is called by {{ count }} in the template
@@ -204,8 +204,8 @@ export default {
       // if (store.state.count > 3) {
       //   multiplier = Math.pow(store.state.count,2)
       // }
-
       console.log('multiplier: '+multiplier)
+      
       axios
         .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*multiplier)
         // .get('https://evtask.t12y.net/assets')

@@ -7,6 +7,8 @@
         <b-button @click="$emit('reset-deck')">Shuffle</b-button> 
 
         <b-button @click="incrementClicks">Increment Clicks</b-button> clicks: {{ clicks }}
+        
+        <b-button @click="getDataOfType">getDataOfType</b-button> data_category: {{ data_category }}
         <!-- <b-button @click="$emit('post-results')">Post Results</b-button>  -->
         <span class="column is-pulled-right">
           <span><strong>{{ counter_title }}:</strong> {{ count }}</span>
@@ -41,11 +43,21 @@ export default {
   methods: {
     incrementClicks: function() {
       store.dispatch('increment',4)
+    },
+    getDataOfType: function() {
+
+      store.dispatch('getDataOfType','fruit').then(() => {
+        // ...
+        console.log('getDataOfType DONE')
+      })
     }
   },
-  computed: { // retrieve current data state 
+  computed: { // "computed data" retrieve current data state 
     clicks () { // is computation is called by {{ count }} in the template
       return store.state.clicks
+    },
+    data_category () { // is computation is called by {{ count }} in the template
+      return store.state.data_category
     },
     count () { // is computation is called by {{ count }} in the template
       return store.state.count
