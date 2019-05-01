@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    clicks: 1,
     counter_title: 'Level',
     count: 0,
     app_class: null,
@@ -52,9 +53,19 @@ export default new Vuex.Store({
       console.log('apiLoadingError called in Store')
       return state.api_loading_error = hasError
     },
+    increment(state,multiplier) {
+      console.log('## mutations increment called in Store: multiplier: '+multiplier)
+      return state.clicks = state.clicks*multiplier
+    },
+    // checkCardSelections()
   },
   actions: {
-
+    // call actions > increment using store.dispatch('increment')
+    increment (context,multiplier) {
+      // this fires mutations > increment
+      context.commit('increment',multiplier)
+    }
+  
   }
 })
 

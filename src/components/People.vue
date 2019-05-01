@@ -5,6 +5,8 @@
       <div class="column is-full">
         <b-button @click="$emit('new-deck')">Start Over</b-button> 
         <b-button @click="$emit('reset-deck')">Shuffle</b-button> 
+
+        <b-button @click="incrementClicks">Increment Clicks</b-button> clicks: {{ clicks }}
         <!-- <b-button @click="$emit('post-results')">Post Results</b-button>  -->
         <span class="column is-pulled-right">
           <span><strong>{{ counter_title }}:</strong> {{ count }}</span>
@@ -37,8 +39,14 @@ export default {
     audio.preload;
   },
   methods: {
+    incrementClicks: function() {
+      store.dispatch('increment',4)
+    }
   },
   computed: { // retrieve current data state 
+    clicks () { // is computation is called by {{ count }} in the template
+      return store.state.clicks
+    },
     count () { // is computation is called by {{ count }} in the template
       return store.state.count
     },

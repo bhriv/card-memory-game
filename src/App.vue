@@ -68,6 +68,8 @@ export default {
   },
   mounted () {
     console.log('App mounted now');
+    store.dispatch('increment',2)
+    // console.log('store.state.clicks = '+store.state.clicks)
     this.gameStart()
   },
   computed: { // retrieve current data state 
@@ -163,7 +165,8 @@ export default {
       }
     },
     checkSelections: function (choices) {
-      console.log('fired checkSelectedCards',choices);
+      console.log('fired checkSelectedCards in App.vue',choices);
+      store.commit('checkCardSelections',choices)
       for (var i = 0; i < choices.length; i++) {
         if (choices[0].title === choices[1].title) {
           console.log('Matched Pair Found!!')
