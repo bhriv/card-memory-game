@@ -205,7 +205,7 @@ export default {
       //   multiplier = Math.pow(store.state.count,2)
       // }
       console.log('multiplier: '+multiplier)
-      
+
       axios
         .get('https://randomuser.me/api/?inc=name,picture&results='+this.pairs_to_match*multiplier)
         // .get('https://evtask.t12y.net/assets')

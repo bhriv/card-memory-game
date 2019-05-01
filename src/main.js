@@ -3,8 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+
 // Vendor Library 
 import underscore from 'vue-underscore'
+Vue.use(underscore);
 
 // Vendor UI Framework
 import Buefy from 'buefy'
@@ -17,7 +19,7 @@ Vue.use(Buefy, {
 
 Vue.config.productionTip = false
 
-Vue.use(underscore);
+
 
 new Vue({
   router,
